@@ -1215,3 +1215,18 @@ div.login-inner div.form-actions {
     height:40px;
     background-repeat:no-repeat;
 }
+
+.supplier-create-texts{
+    text-align:left;
+    font-weight:bold;
+    width:175px;
+    float:left;
+}
+
+.supplier-border{
+    border-bottom:1px solid #000;
+    width:93%;
+    margin-bottom:15px;
+    margin-left:-16px
+}
+
