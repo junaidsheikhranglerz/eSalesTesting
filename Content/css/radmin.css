@@ -893,7 +893,7 @@ html, body {
 
 /* Height of the push needs to match the margin of the wrap */
 #sticky-footer-push {
-	/*height: 100px;*/
+	height: 100px;
 }
 
 /* Footer */
