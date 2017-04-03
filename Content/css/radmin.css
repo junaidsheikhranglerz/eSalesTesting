@@ -176,7 +176,7 @@ a.user-info:hover {
     /*padding: 6px 0;*/
     /*background-color: #181818;*/
     background-color: #141414; /* Old browsers */
-    background-image: url(../img/images/hhh.png);
+    background-image: url(../../img/images/hhh.png);
     background-repeat: repeat-x;
 }
 
@@ -893,7 +893,7 @@ html, body {
 
 /* Height of the push needs to match the margin of the wrap */
 #sticky-footer-push {
-	height: 100px;
+	/*height: 100px;*/
 }
 
 /* Footer */
