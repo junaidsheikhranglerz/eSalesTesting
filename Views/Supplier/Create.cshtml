@@ -46,8 +46,8 @@
                                 </div>
 
                                 <div class="col-md-1 col-sm-6 col-xs-6 text-center pull-right" style="margin-right:10px">
-                                    <a href="#">
-                                        <span class="box"><img src="~/img/images/new_supplier.png"/></span><br />
+                                    <a href="#" data-toggle="modal" data-target=".bs-example-modal-lg">
+                                        <span class="box"><img src="~/img/images/new_supplier.png" /></span><br />
                                         <span><b>New Supplier</b></span>
 
                                     </a>
@@ -55,17 +55,6 @@
 
                             </div>
                         </div>
-
-
-                        <a style="float:right" href="#" data-toggle="modal" data-target=".bs-example-modal-lg"><img src="~/img/images/i.png" style="margin: -2px 3px 0px 0;" /></a>
-
-
-
-
-
-
-
-
 
                     </div>
                 </div>
@@ -103,7 +92,7 @@
                             <h3 style="color:#000"><b>New Supplier</b></h3>
                             <img class="pull-right" src="~/img/images/supplier.png" style="margin:-34px 81px 20px 0" />
 
-                            <form id="demo-form2" action="~/User/Create" method="post" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+                            <form id="demo-form2" action="~/Supplier/Create" method="post" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 
 
 
@@ -142,10 +131,26 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="supplier-create-texts" for="middle-name">Sales Contact Phone <span class="required">*</span></label>
-                                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                                <input type="text" name="sales_contact_phone" required>
+                                            <div>
+                                                <div class="">
+                                                    <label class="supplier-create-texts" for="middle-name">Sales Contact Phone <span class="required">*</span></label>
+                                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                                        <input type="text" name="sales_contact_phone" required style="width:113px">
+                                                    </div>
+                                                </div>
+
+                                                <div class="">
+                                                    <label style="float: left;margin: 1px -32px 0 25px">Ext</label>
+                                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                                        <input type="text" name="sales_phone_ext" required style="width:35px">
+                                                    </div>
+                                                </div>
+
+                                                <div class="clear"></div>
+
                                             </div>
+                                            
+
                                         </div>
 
                                         <div class="form-group">
@@ -179,11 +184,28 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="supplier-create-texts" for="middle-name">Account Contact Phone <span class="required">*</span></label>
-                                            <div class="col-md-3 col-sm-6 col-xs-12">
-                                                <input type="text" name="account_contact_phone" required>
+                                            <div>
+                                                <div class="">
+                                                    <label class="supplier-create-texts" for="middle-name">Account Contact Phone <span class="required">*</span></label>
+                                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                                        <input type="text" name="account_contact_phone" required style="width:113px">
+                                                    </div>
+                                                </div>
+
+                                                <div class="">
+                                                    <label style="float: left;margin: 1px -32px 0 25px">Ext</label>
+                                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                                        <input type="text" name="account_ext_phone" required style="width:35px">
+                                                    </div>
+                                                </div>
+
+                                                <div class="clear"></div>
+
                                             </div>
+
+
                                         </div>
+
 
                                         <div class="form-group">
                                             <label class="supplier-create-texts" for="middle-name">Account Contact Mobile <span class="required">*</span></label>
@@ -244,10 +266,10 @@
                                             <label class="supplier-create-texts" for="middle-name">Address<span class="required">*</span></label>
                                             <div class="col-md-3 col-sm-6 col-xs-12">
                                                 <input type="text" name="address1" required>
-                                                <input type="text" name="address2" required>
-                                                <input type="text" name="address3" required>
-                                                <input type="text" name="address4" required>
-                                                <input type="text" name="address5" required>
+                                                <input type="text" name="address2">
+                                                <input type="text" name="address3">
+                                                <input type="text" name="address4">
+                                                <input type="text" name="address5">
                                             </div>
                                         </div>
 
