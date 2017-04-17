@@ -1,4 +1,5 @@
-﻿<body id="body-index">
+﻿@model  List<eSalesPro.Models.Product>
+<body id="body-index">
     <div id="sticky-footer-wrap">
 
         @*-----------------Top Navigation Start---------------*@
@@ -33,7 +34,7 @@
                                 <div class="col-md-3"></div>
 
                                 <div class="col-md-3 pull-right">
-                                    <a href="~/Home/Epos" class="btn btn-primary btn-mini width-170 product-stock-btn bold">Update Stocktaking</a>
+                                    <a href="~/Product/Stock_Taking_List" class="btn btn-primary btn-mini width-170 product-stock-btn bold">Update Stocktaking</a>
                                 </div>
 
                                 <div class="col-md-3 pull-right">
@@ -96,7 +97,7 @@
                                 <table class="table table-responsive col-md-12">
                                     <thead>
                                         <tr class="table-heading-fonts table-main-headings">
-                                            <th>Image</th>
+                                            <th>Id</th>
                                             <th>SKU</th>
                                             <th>Description</th>
                                             <th>Normal Price</th>
@@ -104,7 +105,7 @@
                                             <th>Premium Price</th>
                                             <th>Other Price</th>
                                             <th>Cost Price</th>
-                                            <th>Quantity</th>
+                                            <th>Courier Type</th>
                                             <th id="check-normal-price-th" class="hideDiv">Total Normal Price</th>
                                             <th id="check-trade-price-th" class="hideDiv">Total Trade Price</th>
                                             <th id="check-premium-price-th" class="hideDiv">Total Premium Price</th>
@@ -115,19 +116,24 @@
 
                                         </tr>
                                     </thead>
+
+
+
                                     <tbody class="bold tbody-font-style">
+
+                                        @foreach (var v in Model) { 
 
                                         @*<tr data-toggle="modal" data-target=".bs-example-modal-lg">*@
                                         <tr>
-                                            <td data-title="User ID">Image</td>
-                                            <td data-title="User ID">SKU</td>
-                                            <td data-title="First Name">Description</td>
-                                            <td data-title="Last Name">Normal Price</td>
-                                            <td data-title="Email" class="user-emails">Trade Price</td>
-                                            <td data-title="Date Registered">Premium Price</td>
-                                            <td class="gg">Other Price</td>
-                                            <td class="red">Cost Price</td>
-                                            <td class="red">Quantity</td>
+                                            <td data-title="User ID">@v.Id</td>
+                                            <td data-title="User ID">@v.Custom_Label_</td>
+                                            <td data-title="First Name">@v.Item_Title</td>
+                                            <td data-title="Last Name">@v.Price_Normal</td>
+                                            <td data-title="Email" class="user-emails">@v.Price_Trade</td>
+                                            <td data-title="Date Registered">@v.Price_Premium</td>
+                                            <td class="gg">@v.Price_Others</td>
+                                            <td class="red">@v.Cost_Price</td>
+                                            <td class="red">@v.Courier_Type</td>
                                             <td id="check-normal-price-td" class="hideDiv">Total Normal Price</td>
                                             <td id="check-trade-price-td" class="hideDiv">Total Trade Price</td>
                                             <td id="check-premium-price-td" class="hideDiv">Total Premium Price</td>
@@ -135,9 +141,8 @@
                                             <td id="check-cost-price-td" class="hideDiv">Total Cost Price</td>
 
                                         </tr>
-
+                                        }
                                     </tbody>
-
                                 </table>
 
                                 <div class="clearfix"></div>
@@ -487,7 +492,7 @@
 
                 <div class="title col-md-12">
                     <span>Categories</span>
-                    <img src="~/img/images/c3.png" class="close mr--13 pull-right"/>
+                    <img src="~/img/images/c3.png" class="close mr--13 pull-right" />
                 </div>
 
                 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -503,7 +508,7 @@
                                     <div class="form-group">
                                         <label class="supplier-create-texts font-16" for="middle-name">Category Name<span class="required">*</span></label>
                                         <div class="col-md-3 col-sm-6 col-xs-12">
-                                            <input class="width-200" type="text" name="item_title" required>
+                                            <input class="width-200" type="text" name="category_title" id="category" required>
                                         </div>
                                     </div>
 
@@ -516,7 +521,7 @@
                                     <div class="col-md-3"></div>
 
                                     <div class="col-md-3">
-                                        <input type="submit" value="Save" class="btn btn-success btn-mini center-block width-123" />
+                                        <input type="button" onclick="addCategorys();" value="Save" class="btn btn-success btn-mini center-block width-123" />
                                     </div>
 
                                     <div class="col-md-3">
@@ -559,7 +564,7 @@
 
                 <div class="title col-md-12">
                     <span>Stock Transfer</span>
-                    <img src="~/img/images/c3.png" class="close mr--13 pull-right" data-dismiss="modal" />
+                    @*<img src="~/img/images/c3.png" class="close mr--13 pull-right" data-dismiss="modal" />*@
                 </div>
 
                 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -577,7 +582,7 @@
                                     <div class="form-group">
                                         <label class="stock-transfer-texts" for="middle-name">From:</label>
                                         <div class="col-md-3 col-sm-6 col-xs-12">
-                                            <select name="supplier_name"  class="form-control width-365">
+                                            <select name="supplier_name" class="form-control width-365">
                                                 <option value="">Please select any </option>
                                             </select>
                                         </div>
@@ -586,7 +591,7 @@
                                     <div class="form-group">
                                         <label class="stock-transfer-texts" for="middle-name">To:</label>
                                         <div class="col-md-3 col-sm-6 col-xs-12">
-                                            <select name="supplier_name"  class="form-control width-365">
+                                            <select name="supplier_name" class="form-control width-365">
                                                 <option value="">Please select any </option>
                                             </select>
                                         </div>
@@ -595,7 +600,7 @@
                                     <div class="form-group">
                                         <label class="stock-transfer-texts" for="middle-name">QTY:</label>
                                         <div class="col-md-3 col-sm-6 col-xs-12">
-                                            <input type="text" class="width-110" name="stock_qty" id="login" >
+                                            <input type="text" class="width-110" name="stock_qty" id="login">
                                         </div>
                                     </div>
 
@@ -658,7 +663,7 @@
                         <div class="win text-center">
                             @*<h3 class="black-color"><b>Add New Item</b></h3>
                                 <img class="pull-right margin-supplier ml-22" src="~/img/images/supplier.png" />*@
-                            
+
                         </div>
                     </div>
                 </div>
@@ -672,25 +677,24 @@
 
     @*----------------------------POP UP for COMPOSITE ITEMS--------------------------------*@
 
-    <div class="modal fade bs-example-modal-md z-999999999999999999999999" id="create_composite_modal" tabindex="-1" role="dialog" aria-hidden="false">
+    <div class="modal fade bs-example-modal-md z-999999999999999999999999" id="composite_modal" tabindex="-1" role="dialog" aria-hidden="false">
         <div class="modal-dialog modal-lg-2">
             <div class="modal-content modal-style-custom">
 
 
                 <div class="title col-md-12">
                     <span>Composite Items</span>
-                    <img src="~/img/images/c3.png" class="close mr--13 pull-right" data-dismiss="modal" />
+                    @*<img src="~/img/images/c3.png" class="close mr--13 pull-right" data-dismiss="modal" />*@
                 </div>
 
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
 
                         <div class="win text-center">
-                            @*<h3 class="black-color"><b>Find Supplier</b></h3>*@
 
                             <p class="mt-30 bold">
                                 Add Composite items
-                                <a class="ml-5 mr-5" href="#" onclick="again_click_modal_btn()" data-toggle="modal" data-target="">
+                                <a class="ml-5 mr-5" href="#">
                                     <img class="size-35-32 ml-5 mr-5" src="~/img/images/plus.png" />Add Items
                                 </a>
                             </p>
@@ -721,23 +725,6 @@
                                         <a href=""><img class="del-img" src="~/img/images/delete.png" /></a>
                                     </div>
 
-                                    @*<div class="form-group">
-                                        <label class="stock-transfer-texts" for="middle-name">From:</label>
-                                        <div class="col-md-3 col-sm-6 col-xs-12">
-                                            <select name="supplier_name" class="form-control width-365">
-                                                <option value="">Please select any </option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="stock-transfer-texts" for="middle-name">To:</label>
-                                        <div class="col-md-3 col-sm-6 col-xs-12">
-                                            <select name="supplier_name" class="form-control width-365">
-                                                <option value="">Please select any </option>
-                                            </select>
-                                        </div>
-                                    </div>*@
 
 
                                     <div class="clearfix"></div>
@@ -782,8 +769,113 @@
     @*----------------------------POP UP END COMPOSITE ITEMS--------------------------------*@
 
 
+    @*----------------------------POP UP for ESHOP SETTINGS SETTINGS--------------------------------*@
 
-    @*----------------------------POP UP ADD SUPPLIER--------------------------------*@
+    <div class="modal fade bs-example-modal-md z-999999999999999999999999" id="eshop_modal" tabindex="-1" role="dialog" aria-hidden="false">
+        <div class="modal-dialog modal-lg-2">
+            <div class="modal-content modal-style-custom">
+
+
+                <div class="title col-md-12">
+                    <span>Edit-Sync Settings</span>
+                    @*<img src="~/img/images/c3.png" class="close mr--13 pull-right" data-dismiss="modal" />*@
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+
+                        <div class="win text-center">
+
+                            <div>
+                                <h4 class="mt-30 pull-left bold">
+                                    Manage Item Syncing
+                                    @*<a class="ml-5 mr-5" href="#">
+                                            <img class="size-35-32 ml-5 mr-5" src="~/img/images/plus.png" />Add Items
+                                        </a>*@
+                                </h4>
+                            </div>
+                            <br />
+                            <div class="pull-left">
+
+                                <div class="row1 mt-30 pull-left">
+                                    <div class="pull-left"><label>Sync Options  : </label></div>
+                                    <div class="pull-left"><label class="mb-0"><input type="radio" />Basic</label></div>
+                                    <div class="pull-left"><label class="mb-0"><input type="radio" />Standard</label></div>
+                                    <div class="pull-left"><label class="mb-0"><input type="radio" />Advance</label></div>
+                                </div>
+                            </div>
+
+                            @*<form action="" class="form-horizontal form-label-left" method="post">
+
+                                    <div class="col-md-12">
+                                        <div class="ml-75">
+                                            <div class="form-group pull-left">
+                                                <label class="control-label pull-left mt--4">SKU:</label>
+
+
+                                                <input id="sku_composite" class="form-control pull-left width-170" type="text" name="sku_composite" placeholder="" required="" title="admin" style="height: 25px">
+
+
+
+                                            </div>
+
+                                            <div class="form-group pull-left">
+                                                <label class="control-label pull-left ml-31 mt--4">QTY:</label>
+
+
+                                                <input id="sku_composite" class="form-control pull-left width-170" type="text" name="sku_composite" placeholder="" required="" title="admin" style="height: 25px">
+
+
+
+                                            </div>
+                                            <a href=""><img class="del-img" src="~/img/images/delete.png" /></a>
+                                        </div>
+
+
+
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="col-md-3"></div>
+
+                                        <div class="col-md-3">
+                                            <input type="submit" value="Add" class="btn btn-success btn-mini center-block width-123" />
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <a href="~/Product/List" class="btn btn-primary btn-mini width-123 center-block a-cancel height-40 mt-0">Cancel</a>
+                                        </div>
+                                        <div class="col-md-3"></div>
+
+
+
+                                    </div>
+                                </form>*@
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    @*----------------------------POP UP END ESHOP SETTINGS--------------------------------*@
+
+
+    @*----------------------------POP UP ADD PRODUCT--------------------------------*@
 
     <div class="modal fade" id="CreateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
@@ -801,7 +893,7 @@
                             <h3 class="black-color mb-40"><b>Add New Item</b></h3>
                             @*<img class="pull-right margin-supplier ml-22" src="~/img/images/supplier.png" />*@
 
-                            <form id="demo-form2" action="~/Supplier/List" method="post" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+                            <form id="demo-form2" action="@Url.Action("Create","Product")" method="post" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 
 
 
@@ -830,14 +922,14 @@
                                                 <div class="">
                                                     <label class="supplier-create-texts" for="middle-name">Normal Price <span class="required">*</span></label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <input class="width-170" type="text" name="sales_contact_phone" required>
+                                                        <input class="width-170" type="text" name="normal_price" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="">
                                                     <label class="vat-texts">+VAT=</label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <input type="text" class="width-170" name="sales_phone_ext" required>
+                                                        <input type="text" class="width-170" name="normal_vat" required>
                                                     </div>
                                                 </div>
 
@@ -1027,6 +1119,10 @@
                                             <div class="col-md-3 col-sm-6 col-xs-12">
                                                 <select name="supplier_name" required class="form-control width-400">
                                                     <option value="">Please select any </option>
+                                                    @foreach (var name in ViewBag.Suppliers)
+                                                    {
+                                                        <option value="@name.Id">@name.Name </option>
+                                                    }
                                                 </select>
                                             </div>
                                         </div>
@@ -1087,16 +1183,21 @@
                                         </div>
 
 
-                                        <div class="form-group">
+                                        <div id="" class="form-group">
                                             <label class="supplier-create-texts" for="middle-name">Category Name<span class="required">*</span></label>
                                             <div class="col-md-3 col-sm-6 col-xs-12">
-                                                <select name="supplier_name" required class="form-control width-360">
+                                                <select id="updated_Category" name="categooory_name" required class="form-control width-360">
+
                                                     <option value="">Please select any </option>
+                                                    @foreach (var name in ViewBag.Categories)
+                                                    {
+                                                        <option value="name.Id">@name.Type</option>
+                                                    }
                                                 </select>
                                             </div>
 
                                             <div class="">
-                                                <a href="#" onclick="again_click_modal_btn()" data-toggle="modal" data-target="#create_category_modal">
+                                                <a href="#" data-toggle="modal" data-target="#create_category_modal">
                                                     <img class="plus-img" src="~/img/images/plus.png" />
                                                 </a>
                                             </div>
@@ -1107,14 +1208,14 @@
 
 
                                         <div class="form-group">
-                                            <label class="supplier-create-texts" for="middle-name">Courier Type<span class="required">*</span></label>
+                                            <label class="supplier-create-texts" for="middle-name">Courier Type</label>
                                             <div class="col-md-3 col-sm-6 col-xs-12">
                                                 <input class="width-400" type="text" name="courier_type" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="supplier-create-texts" for="middle-name">Tax Type<span class="required">*</span></label>
+                                            <label class="supplier-create-texts" for="middle-name">Tax Type</label>
                                             <div class="col-md-3 col-sm-6 col-xs-12">
                                                 <input class="width-400" type="text" name="tax_type" required>
                                             </div>
@@ -1129,10 +1230,10 @@
 
 
                                         <div class="form-group">
-                                            <label class="supplier-create-texts bold font-16 black-color" for="middle-name">Composite(Kit) Items <span class="required">*</span></label>
+                                            <label class="supplier-create-texts bold font-16 black-color" for="middle-name">Composite(Kit) Items</label>
 
                                             <div class="pull-left">
-                                                <a href="#" data-toggle="modal" data-target="#create_composite_modal">
+                                                <a href="#" data-toggle="modal" data-target="#composite_modal">
                                                     <img class="pencil-img" src="~/img/images/pencil48.png" />
                                                 </a>
                                             </div>
@@ -1145,7 +1246,7 @@
                                         <div class="product-border"></div>
 
                                         <div class="form-group">
-                                            <label class="supplier-create-texts bold font-16 black-color" for="middle-name">Sync eShops<span class="required">*</span></label>
+                                            <label class="supplier-create-texts bold font-16 black-color" for="middle-name">Sync eShops</label>
 
                                             <div class="pull-left">
                                                 <a href="#">
@@ -1160,10 +1261,10 @@
 
 
                                         <div class="form-group">
-                                            <label class="supplier-create-texts bold font-16 black-color" for="middle-name">eShop Settings<span class="required">*</span></label>
+                                            <label class="supplier-create-texts bold font-16 black-color" for="middle-name">eShop Settings</label>
 
                                             <div class="pull-left">
-                                                <a href="#">
+                                                <a href="#" data-toggle="modal" data-target="#eshop_modal">
                                                     <img class="pencil-img" src="~/img/images/pencil.png" />
                                                 </a>
                                             </div>
@@ -1184,7 +1285,7 @@
                                             <h3 class="bold mt-0">Item Images</h3>
                                             <div class="fileupload fileupload-new" data-provides="fileupload" align="center">
 
-                                                <div class="fileupload-new thumbnail"><img src="~/img/images/default-image.jpg" class="product-img"/></div>
+                                                <div class="fileupload-new thumbnail"><img src="~/img/images/default-image.jpg" class="product-img" /></div>
 
                                                 <div class="fileupload-preview fileupload-exists thumbnail @*product-img*@"></div>
 
@@ -1245,30 +1346,30 @@
         </div>
     </div>
 
-    @*----------------------------POP UP END ADD SUPPLIER--------------------------------*@
-    
-<script>
-    function cancel_btn() {
-
-        alert("cancel")
-        if(document.getElementById("create_category_modal"))
-        {
-            alert("if")
-            $("#create_category_modal").hide('fast');
-        }
-    }
-</script>
+    @*----------------------------POP UP END ADD PRODUCT--------------------------------*@
 
     <script>
-        function again_click_modal_btn() {
+        function cancel_btn() {
 
-            alert("again")
-            if (document.getElementById("create_category_modal")) {
-                alert("again if")
-                $("#create_category_modal").show('slow');
-                $("#create_category_modal").show('FAST');
-            }
+            //alert("cancel")
+            //if(document.getElementById("create_category_modal"))
+            //{
+            //    alert("if")
+            //    $("#create_category_modal").hide('fast');
+            //}
         }
+    </script>
+
+    <script>
+        //function again_click_modal_btn() {
+
+        //    alert("again")
+        //    if (document.getElementById("create_category_modal")) {
+        //        alert("again if")
+        //        $("#create_category_modal").show('slow');
+        //        $("#create_category_modal").show('FAST');
+        //    }
+        //}
     </script>
 
 
@@ -1327,11 +1428,7 @@
 
 
     </script>
-    @*</script>
-            </script>
-        </script>*@
-
-
+ 
     <script>
         function normalprice() {
             //alert("NORMAL");
@@ -1398,5 +1495,29 @@
             }
         }
 
+    </script>
+
+    <script>
+        function addCategorys()
+        {
+           
+            var Name = document.getElementById('category').value;
+            
+            $.ajax({
+
+                url: "/Product/addCategory/",
+                data : {name : Name},
+                cache: false,
+                type: "Get",
+                success: function (data) {
+                    document.getElementById('create_category_modal').style.display = "none";
+                    document.getElementById('updated_Category').innerHTML = data;
+              
+                },
+                error: function (response) {
+                    alert("eeeeee");
+                }
+                });
+        }
     </script>
 </body>
