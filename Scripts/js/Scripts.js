@@ -9,3 +9,12 @@
         alert("Please Enter Only Numeric Value")
     }
 }
+
+
+$(document).ready(function () {
+    $('#example').dataTable();
+});
+
+$(document).ready(function () {
+    $('#example1').dataTable();
+});
