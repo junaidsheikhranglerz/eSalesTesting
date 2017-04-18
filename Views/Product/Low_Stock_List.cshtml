@@ -32,19 +32,16 @@
                                 </div>
                                 <div class="mt-10 ml-99">
                                     <div class="col-md-2 pull-right">
-                                        <a href="~/Home/Epos" class="btn btn-primary btn-mini text-center width-136 bold">Delete</a>
+                                        <a href="~/Home/Epos" class="btn btn-primary ml--72 btn-mini text-center width-208 bold">Delete</a>
                                     </div>
 
                                     <div class="col-md-2 pull-right">
-                                        <a href="~/Home/Epos" class="btn btn-primary btn-mini text-center width-136 bold">Export to Excel</a>
                                     </div>
 
                                     <div class="col-md-2 pull-right">
-                                        <a href="~/Home/Epos" class="btn btn-primary btn-mini width-136  text-center bold">Print</a>
                                     </div>
 
                                     <div class="col-md-2 pull-right">
-                                        <a href="~/Home/Epos" class="btn btn-primary btn-mini  text-center width-136 bold">Save</a>
                                     </div>
                                 </div>
 
@@ -93,12 +90,12 @@
                                     <thead>
                                         <tr class="table-heading-fonts table-main-headings">
                                             <th>Image</th>
+                                            <th>Supplier Name</th>
                                             <th>SKU</th>
                                             <th>Description</th>
-                                            <th>Current Quantity</th>
-                                            <th class="width-61">Recount Quantity</th>
-                                            <th class="text-center">QTY Difference</th>
-
+                                            <th>Cost Price</th>
+                                            <th class="width-61">Quantity</th>
+                                            <th class="text-center">Warn Level</th>
                                         </tr>
                                     </thead>
                                     <tbody class="bold tbody-font-style">
@@ -106,11 +103,12 @@
                                         @*<tr data-toggle="modal" data-target=".bs-example-modal-lg">*@
                                         <tr>
                                             <td data-title="User ID">Image</td>
+                                            <td data-title="User ID">Supplier Name</td>
                                             <td data-title="User ID">SKU</td>
                                             <td data-title="First Name">Description</td>
-                                            <td data-title="Last Name">Current Quantity</td>
-                                            <td data-title="Email" class="user-emails text-center"><input type="text" onkeypress='validate(event)' class="width-73" name="stock_qty" id="login"></td>
-                                            <td data-title="Date Registered" class="text-center">QTY Difference</td>
+                                            <td data-title="Last Name">Cost Price</td>
+                                            <td data-title="Email" class="user-emails text-center">Quantity</td>
+                                            <td data-title="Date Registered" class="text-center">Warn Level</td>
                                         </tr>
 
                                     </tbody>

@@ -77,16 +77,19 @@
 
                         <div class="margin-checkboxes-product">
                             <div class="row1 pull-right">
-                                <div class="pull-left bold">Custom Fields</div>
-                                <div class="pull-left"><label class="unbold"><input onclick="normalprice()" id="checkbox-normal" type="checkbox" />Normal</label></div>
-                                <div class="pull-left"><label class="unbold"><input onclick="normalprice()" id="checkbox-trade" type="checkbox" />Trade</label></div>
-                                <div class="pull-left"><label class="unbold"><input onclick="normalprice()" id="checkbox-premium" type="checkbox" />Premium</label></div>
-                                <div class="pull-left"><label class="unbold"><input onclick="normalprice()" id="checkbox-other" type="checkbox" />Other</label></div>
-                                <div class="pull-left"><label class="unbold"><input onclick="normalprice()" id="checkbox-cost" type="checkbox" />Cost</label></div>
+                                <div class="pull-left bold  mr-5">Custom Fields</div>
+                                <div class="pull-left mr-5"><label class="unbold"><input onclick="normalprice()" id="checkbox-normal" type="checkbox" />Normal</label></div>
+                                <div class="pull-left mr-5"><label class="unbold"><input onclick="normalprice()" id="checkbox-trade" type="checkbox" />Trade</label></div>
+                                <div class="pull-left mr-5"><label class="unbold"><input onclick="normalprice()" id="checkbox-premium" type="checkbox" />Premium</label></div>
+                                <div class="pull-left mr-5"><label class="unbold"><input onclick="normalprice()" id="checkbox-other" type="checkbox" />Other</label></div>
+                                <div class="pull-left mr-5"><label class="unbold"><input onclick="normalprice()" id="checkbox-cost" type="checkbox" />Cost</label></div>
                             </div>
                         </div>
 
                         <div class="clearfix"></div>
+                        
+                       
+                        
 
 
                         @*<section id="no-more-tables">*@
@@ -124,22 +127,25 @@
                                         @foreach (var v in Model) { 
 
                                         @*<tr data-toggle="modal" data-target=".bs-example-modal-lg">*@
-                                        <tr>
-                                            <td data-title="User ID">@v.Id</td>
-                                            <td data-title="User ID">@v.Custom_Label_</td>
-                                            <td data-title="First Name">@v.Item_Title</td>
-                                            <td data-title="Last Name">@v.Price_Normal</td>
-                                            <td data-title="Email" class="user-emails">@v.Price_Trade</td>
-                                            <td data-title="Date Registered">@v.Price_Premium</td>
-                                            <td class="gg">@v.Price_Others</td>
-                                            <td class="red">@v.Cost_Price</td>
-                                            <td class="red">@v.Courier_Type</td>
-                                            <td id="check-normal-price-td" class="hideDiv">Total Normal Price</td>
-                                            <td id="check-trade-price-td" class="hideDiv">Total Trade Price</td>
-                                            <td id="check-premium-price-td" class="hideDiv">Total Premium Price</td>
-                                            <td id="check-other-price-td" class="hideDiv">Total Other Price</td>
-                                            <td id="check-cost-price-td" class="hideDiv">Total Cost Price</td>
+                                        
+                                            <tr class="" >
+                                            
 
+
+                                                <td data-title="User ID">@v.Id</td>
+                                                <td data-title="User ID">@v.Custom_Label_</td>
+                                                <td data-title="First Name">@v.Item_Title</td>
+                                                <td data-title="Last Name">@v.Price_Normal</td>
+                                                <td data-title="Email" class="user-emails">@v.Price_Trade</td>
+                                                <td data-title="Date Registered">@v.Price_Premium</td>
+                                                <td class="">@v.Price_Others</td>
+                                                <td class="">@v.Cost_Price</td>
+                                                <td class="">@v.Courier_Type</td>
+                                                <td id="check-normal-price-td" class="hideDiv">@v.Normal_VAT</td>
+                                                <td id="check-trade-price-td" class="hideDiv">@v.Normal_VAT</td>
+                                                <td id="check-premium-price-td" class="hideDiv">@v.Normal_VAT</td>
+                                                <td id="check-other-price-td" class="hideDiv">@v.Normal_VAT</td>
+                                                <td id="check-cost-price-td" class="hideDiv">@v.Normal_VAT</td>
                                         </tr>
                                         }
                                     </tbody>
@@ -153,6 +159,10 @@
 
 
                         </section>
+
+
+
+
 
                     </div>
                 </div>
@@ -787,72 +797,104 @@
                         <div class="win text-center">
 
                             <div>
-                                <h4 class="mt-30 pull-left bold">
+                                <h4 class="mt-30 pull-left black-color bold">
                                     Manage Item Syncing
                                     @*<a class="ml-5 mr-5" href="#">
                                             <img class="size-35-32 ml-5 mr-5" src="~/img/images/plus.png" />Add Items
                                         </a>*@
                                 </h4>
                             </div>
+                            <div class="clearfix"></div>
                             <br />
-                            <div class="pull-left">
+                            <div class="">
 
-                                <div class="row1 mt-30 pull-left">
+                                <div class="row1 pull-left">
                                     <div class="pull-left"><label>Sync Options  : </label></div>
-                                    <div class="pull-left"><label class="mb-0"><input type="radio" />Basic</label></div>
-                                    <div class="pull-left"><label class="mb-0"><input type="radio" />Standard</label></div>
-                                    <div class="pull-left"><label class="mb-0"><input type="radio" />Advance</label></div>
+                                    <div class="pull-left"><label class="mb-0"><input name="syncing" onclick="showBasic()" value="Basic" type="radio" />Basic</label></div>
+                                    <div class="pull-left"><label class="mb-0"><input name="syncing" onclick="showStandard()" value="Standard" type="radio" />Standard</label></div>
+                                    <div class="pull-left"><label class="mb-0"><input name="syncing" onclick="showAdvance()" value="Advance" type="radio" />Advance</label></div>
                                 </div>
+                                <div class="clearfix"></div>
                             </div>
+                            <div class="clearfix"></div>
 
-                            @*<form action="" class="form-horizontal form-label-left" method="post">
-
-                                    <div class="col-md-12">
-                                        <div class="ml-75">
-                                            <div class="form-group pull-left">
-                                                <label class="control-label pull-left mt--4">SKU:</label>
-
-
-                                                <input id="sku_composite" class="form-control pull-left width-170" type="text" name="sku_composite" placeholder="" required="" title="admin" style="height: 25px">
-
-
-
-                                            </div>
-
-                                            <div class="form-group pull-left">
-                                                <label class="control-label pull-left ml-31 mt--4">QTY:</label>
-
-
-                                                <input id="sku_composite" class="form-control pull-left width-170" type="text" name="sku_composite" placeholder="" required="" title="admin" style="height: 25px">
-
-
-
-                                            </div>
-                                            <a href=""><img class="del-img" src="~/img/images/delete.png" /></a>
-                                        </div>
-
-
-
-                                        <div class="clearfix"></div>
+                            <div class="">
+                                <div id="basic_id" class="none mt-15">
+                                    <div class="row1 pull-left">
+                                        <div class="pull-left"><label>If warning level reach  : </label></div>
+                                        <div class="pull-left"><label class="mb-0"><input name="syncing" value="Basic" type="radio" />Update increased price :</label></div>
+                                        <div class="pull-left"><label class="mb-0"><input name="syncing" value="Standard" type="radio" />Put listing Out of Stock :</label></div>
                                     </div>
 
-                                    <div class="col-md-12">
-                                        <div class="col-md-3"></div>
+                                    <form action="" class="form-horizontal form-label-left" method="post">
 
-                                        <div class="col-md-3">
-                                            <input type="submit" value="Add" class="btn btn-success btn-mini center-block width-123" />
+                                        <div class="col-md-12 margin-stock-modal">
+
+                                            <div class="form-group">
+                                                <label class="pull-left width-145" for="middle-name">Warning Level (Qty) :</label>
+                                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                                    <input type="text" class="width-150" name="stock_qty" id="login">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="pull-left width-145" for="middle-name">Increased price:</label>
+                                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                                    <input type="text" class="width-150" name="stock_qty" id="login">
+                                                </div>
+                                            </div>
+
+
                                         </div>
 
-                                        <div class="col-md-3">
-                                            <a href="~/Product/List" class="btn btn-primary btn-mini width-123 center-block a-cancel height-40 mt-0">Cancel</a>
+
+                                    </form>
+
+
+
+                                </div>
+
+                                <div id="advance_id" class="none">
+                                    <form action="" class="form-horizontal form-label-left" method="post">
+
+                                        <div class="col-md-12 margin-stock-modal">
+
+                                            <div class="form-group">
+                                                <label class="pull-left" for="middle-name">Maximum Listed Quantity:</label>
+                                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                                    <input type="text" class="width-150" name="stock_qty" id="login">
+                                                </div>
+                                            </div>
+
+
                                         </div>
-                                        <div class="col-md-3"></div>
+
+
+                                    </form>
+
+
+                                </div>
 
 
 
+                                <div class="col-md-12">
+                                    <div class="col-md-3"></div>
+
+                                    <div class="col-md-3">
+                                        <input type="submit" value="Add" class="btn btn-success btn-mini center-block width-123" />
                                     </div>
-                                </form>*@
 
+                                    <div class="col-md-3">
+                                        <a href="~/Product/List" class="btn btn-primary btn-mini width-123 center-block a-cancel height-40 mt-0">Cancel</a>
+                                    </div>
+                                    <div class="col-md-3"></div>
+
+
+
+                                </div>
+
+
+                            </div>
 
                         </div>
 
@@ -922,14 +964,14 @@
                                                 <div class="">
                                                     <label class="supplier-create-texts" for="middle-name">Normal Price <span class="required">*</span></label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <input class="width-170" type="text" name="normal_price" required>
+                                                        <input id="NormalPrice" onkeypress="validate(event)" onkeyup="javascript:Add();" class="width-170" type="text" name="normal_price" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="">
                                                     <label class="vat-texts">+VAT=</label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <input type="text" class="width-170" name="normal_vat" required>
+                                                        <input id="NormalTotal" onkeypress="validate(event)" type="text" class="width-170" name="normal_vat" required>
                                                     </div>
                                                 </div>
 
@@ -948,14 +990,14 @@
                                                 <div class="">
                                                     <label class="supplier-create-texts" for="middle-name">Trade Price <span class="required">*</span></label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <input class="width-170" type="text" name="trade_price" required>
+                                                        <input id="TradePrice" onkeypress="validate(event)" onkeyup="javascript:Add();" class="width-170" type="text" name="trade_price" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="">
                                                     <label class="vat-texts">+VAT=</label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <input type="text" class="width-170" name="trade_vat" required>
+                                                        <input id="TradeTotal" onkeypress="validate(event)" type="text" class="width-170" name="trade_vat" required>
                                                     </div>
                                                 </div>
 
@@ -973,14 +1015,14 @@
                                                 <div class="">
                                                     <label class="supplier-create-texts" for="middle-name">Premium Price <span class="required">*</span></label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <input class="width-170" type="text" name="premium_price" required>
+                                                        <input id="PremiumPrice" onkeypress="validate(event)" class="width-170" onkeyup="javascript:Add();" type="text" name="premium_price" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="">
                                                     <label class="vat-texts">+VAT=</label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <input type="text" class="width-170" name="premium_vat" required>
+                                                        <input id="PremiumTotal" onkeypress="validate(event)" type="text" class="width-170" name="premium_vat" required>
                                                     </div>
                                                 </div>
 
@@ -1000,14 +1042,14 @@
                                                 <div class="">
                                                     <label class="supplier-create-texts" for="middle-name">Other Price <span class="required">*</span></label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <input class="width-170" type="text" name="other_price" required>
+                                                        <input id="OtherPrice" onkeypress="validate(event)" class="width-170" onkeyup="javascript:Add();" type="text" name="other_price" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="">
                                                     <label class="vat-texts">+VAT=</label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <input type="text" class="width-170" name="other_vat" required>
+                                                        <input id="OtherTotal" onkeypress="validate(event)" type="text" class="width-170" name="other_vat" required>
                                                     </div>
                                                 </div>
 
@@ -1031,7 +1073,7 @@
                                                 <div class="">
                                                     <label class="supplier-create-texts font-16 black-color" for="middle-name">Total Quantity<span class="required">*</span></label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <input class="width-170" type="text" name="total_quantity" required>
+                                                        <input class="width-170" onkeypress="validate(event)" type="text" name="total_quantity" required>
                                                     </div>
                                                 </div>
 
@@ -1141,14 +1183,14 @@
                                                 <div class="">
                                                     <label class="supplier-create-texts" for="middle-name">Cost Price <span class="required">*</span></label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <input class="width-170" type="text" name="cost_price" required>
+                                                        <input id="CostPrice" onkeyup="Add()" class="width-170" onkeypress="validate(event)" type="text" name="cost_price" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="">
                                                     <label class="vat-texts">+VAT=</label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <input type="text" class="width-170" name="cost_vat" required>
+                                                        <input id="CostTotal" type="text" onkeypress="validate(event)" class="width-170" name="cost_vat" required>
                                                     </div>
                                                 </div>
 
@@ -1164,14 +1206,14 @@
                                                 <div class="">
                                                     <label class="supplier-create-texts" for="middle-name">Quantity in Box (Inner) <span class="required">*</span></label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <input class="width-170" type="text" name="inner" required>
+                                                        <input class="width-170" onkeypress="validate(event)" type="text" name="inner" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="">
                                                     <label class="vat-texts">(Outer)</label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <input type="text" class="width-170" name="outer" required>
+                                                        <input type="text" onkeypress="validate(event)" class="width-170" name="outer" required>
                                                     </div>
                                                 </div>
 
@@ -1373,6 +1415,32 @@
     </script>
 
 
+    <script>
+        function showBasic() {
+            $("#basic_id").removeClass("none");
+            $("#basic_id").addClass("showDiv");
+            $("#advance_id").addClass("none");
+        }
+
+    </script>
+
+
+    <script>
+        function showAdvance() {
+            $("#advance_id").removeClass("none");
+            $("#advance_id").addClass("showDiv");
+            $("#basic_id").addClass("none");
+        }
+
+    </script>
+    <script>
+        function showStandard() {
+            $("#advance_id").addClass("none");
+            $("#basic_id").addClass("none");
+        }
+
+    </script>
+
 
     <script>
 
@@ -1520,4 +1588,51 @@
                 });
         }
     </script>
+
+
+    <script>
+
+    function Add() {
+        var a, b, c, d;
+        a = parseInt(document.getElementById("NormalPrice").value);
+
+        //
+        // If textbox value is null i.e empty, then the below mentioned if condition will
+        // come into picture and make the value to '0' to avoid errors.
+        //
+        if (isNaN(a) == true) {
+            a = 0;
+        }
+
+        var b = parseInt(document.getElementById("TradePrice").value);
+        if (isNaN(b) == true) {
+            b = 0;
+        }
+
+        var c = parseInt(document.getElementById("PremiumPrice").value);
+        if (isNaN(c) == true) {
+            c = 0;
+        }
+
+        var d = parseInt(document.getElementById("OtherPrice").value);
+        if (isNaN(d) == true) {
+            d = 0;
+        }
+
+        var e = parseInt(document.getElementById("CostPrice").value);
+        if (isNaN(e) == true) {
+            e = 0;
+        }
+
+        document.getElementById("NormalTotal").value = a + ((a * 20) / 100)
+        document.getElementById("TradeTotal").value = b + ((b * 20) / 100)
+        document.getElementById("PremiumTotal").value = c + ((c * 20) / 100)
+        document.getElementById("OtherTotal").value = d + ((d * 20) / 100)
+        document.getElementById("CostTotal").value = e + ((e * 20) / 100)
+    }
+    </script>
+
+
+    
+
 </body>
