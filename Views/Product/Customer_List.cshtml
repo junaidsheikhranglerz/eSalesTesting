@@ -38,7 +38,7 @@
 
                                 <div class="mt-10">
                                     <div class="col-md-2 pull-right">
-                                        <a href="~/Home/Epos" class="btn btn-primary ml--45 btn-mini text-center width-195 bold">Print</a>
+                                        <a href="~/Home/Epos" onclick="PrintBtn()" class="btn btn-primary ml--45 btn-mini text-center width-195 bold">Print</a>
                                     </div>
 
                                     <div class="col-md-2 pull-right">
@@ -95,7 +95,7 @@
                                 <thead>
                                     <tr class="table-heading-fonts table-main-headings">
                                         <th>ID</th>
-                                        <th>Salesman</th>
+                                        <th>Name</th>
                                         <th>Phone</th>
                                         <th>Email</th>
                                         <th>Address</th>
@@ -115,12 +115,12 @@
                                     @*<tr data-toggle="modal" data-target="#EditModal">*@
 
                                     <tr>
-                                        <td data-title="User ID">Id</td>
-                                        <td data-title="User ID">Name</td>
-                                        <td data-title="First Name">Phone</td>
-                                        <td data-title="Last Name">Email</td>
-                                        <td data-title="Email" class="user-emails">Address</td>
-                                        <td data-title="Date Registered">Postcode</td>
+                                        <td data-title="User ID">45</td>
+                                        <td data-title="User ID">Steve Smith</td>
+                                        <td data-title="First Name">+32111494</td>
+                                        <td data-title="Last Name">steve@icloud.com</td>
+                                        <td data-title="Email" class="user-emails">Street 20, USA</td>
+                                        <td data-title="Date Registered">0l12odr</td>
 
                                         <td class="gg">Active</td>
 
@@ -136,6 +136,31 @@
                                             </a>
                                         </td>
                                     </tr>
+
+
+                                    <tr>
+                                        <td data-title="User ID">500</td>
+                                        <td data-title="User ID">Michael Clark</td>
+                                        <td data-title="First Name">+1015872300</td>
+                                        <td data-title="Last Name">clark@icloud.com</td>
+                                        <td data-title="Email" class="user-emails">Street 48, UK</td>
+                                        <td data-title="Date Registered">00sadadR</td>
+
+                                        <td class="gg">Active</td>
+
+                                        <td data-title="Actions" class="text-center min-width-191 buttons-block">
+                                            <a class="btn btn-sm btn-info bold" href="" data-toggle="modal" data-target="#EditModal">
+                                                Edit
+                                            </a>
+                                            <a class="btn btn-sm btn-success bold" href="#">
+                                                Enable
+                                            </a>
+                                            <a class="btn btn-sm btn-danger bold" href="#">
+                                                Disable
+                                            </a>
+                                        </td>
+                                    </tr>
+
                                 </tbody>
                             </table>
 
@@ -704,6 +729,10 @@
         });
     </script>
 
-    
+    <script>
+        function PrintBtn() {
+            window.print();
+        }
+    </script>
 
 </body>
