@@ -1,5 +1,14 @@
 ﻿@model  List<eSalesPro.Models.Product>
 <body id="body-index">
+    @{
+        byte[] buffer = Guid.NewGuid().ToByteArray();
+        var FormNumber = BitConverter.ToUInt32(buffer, 0) ^ BitConverter.ToUInt32(buffer, 4) ^ BitConverter.ToUInt32(buffer, 8) ^ BitConverter.ToUInt32(buffer, 12);
+        var barcode = FormNumber.ToString("X");
+    }
+
+
+
+
     <div id="sticky-footer-wrap">
 
         @*-----------------Top Navigation Start---------------*@
@@ -169,10 +178,6 @@
 
                         </section>
 
-
-
-
-
                     </div>
                 </div>
                 @*-----------------Main Container Ends---------------*@
@@ -190,6 +195,71 @@
         }
     </footer>
 
+
+    @*----------------------------POP UP for BARCODE--------------------------------*@
+
+    <div class="modal fade bs-example-modal-md z-999999999999999999999999" id="barcode_modal" tabindex="-1" role="dialog" aria-hidden="false">
+        <div class="modal-dialog modal-lg-2">
+            <div class="modal-content modal-style-custom">
+
+                <div class="title col-md-12">
+                    <span>Confirm</span>
+                    <img src="~/img/images/c3.png" class="close mr--13 pull-right" />
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+
+                        <div class="win text-center">
+                            @*<h3 class="black-color"><b>Find Supplier</b></h3>*@
+
+
+                                <div class="col-md-12">
+                                    <div class="empty-height"></div><div class="empty-height"></div><div class="empty-height"></div><div class="empty-height"></div>
+                                        <label class="font-16 text-center" for="middle-name">Are you sure you want to use this barcode ?</label>
+                                    <br/>
+                                    <label class="font-17 text-center black-color" id="barcode_label" for="middle-name">@barcode</label>
+
+                                    <div class="empty-height"></div><div class="empty-height"></div>
+
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="col-md-3"></div>
+
+                                    <div class="col-md-3">
+                                        <input type="button" onclick="Barcode_Ok();" value="Ok" class="btn btn-success btn-mini center-block width-123" />
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <a href="#" onclick="cancel_btn()" class="btn btn-primary btn-mini width-123 center-block a-cancel height-40 mt-0 ml-22">Cancel</a>
+                                    </div>
+                                    <div class="col-md-3"></div>
+
+
+
+                                </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    @*----------------------------POP UP END BARCODE--------------------------------*@
 
 
     @*----------------------------POP UP for EDIT SUPPLIER--------------------------------*@
@@ -289,7 +359,7 @@
                         <div class="win text-center">
                             @*<h3 class="black-color"><b>Find Supplier</b></h3>*@
 
-                            <form action="" class="form-horizontal form-label-left" method="post">
+                            <form action="~/Product/List" class="form-horizontal form-label-left" method="post">
 
                                 <div class="col-md-12 margin-stock-modal">
 
@@ -298,17 +368,25 @@
                                     <div class="form-group">
                                         <label class="stock-transfer-texts" for="middle-name">From:</label>
                                         <div class="col-md-3 col-sm-6 col-xs-12">
-                                            <select name="supplier_name" class="form-control width-365">
+                                            <select id="from_warehouse" name="From_Warehouse" class="form-control width-365">
                                                 <option value="">Please select any </option>
-                                            </select>
+                                                @foreach (var warehouse in ViewBag.Warehouses)
+                                                { 
+                                                <option value="@warehouse.Id">@warehouse.Name </option>
+                                                }
+                                                    </select>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="stock-transfer-texts" for="middle-name">To:</label>
                                         <div class="col-md-3 col-sm-6 col-xs-12">
-                                            <select name="supplier_name" class="form-control width-365">
+                                            <select id="to_warehouse" name=" to_warehouse" class="form-control width-365">
                                                 <option value="">Please select any </option>
+                                                @foreach (var warehouse in ViewBag.Warehouses)
+                                                {
+                                                    <option value="@warehouse.Id">@warehouse.Name </option>
+                                                }
                                             </select>
                                         </div>
                                     </div>
@@ -316,7 +394,7 @@
                                     <div class="form-group">
                                         <label class="stock-transfer-texts" for="middle-name">QTY:</label>
                                         <div class="col-md-3 col-sm-6 col-xs-12">
-                                            <input type="text" class="width-110" name="stock_qty" id="login">
+                                            <input type="text"  class="width-110"  name="stock_qty" id="quantity">
                                         </div>
                                     </div>
 
@@ -327,7 +405,7 @@
                                     <div class="col-md-3"></div>
 
                                     <div class="col-md-3">
-                                        <input type="submit" value="Transfer" class="btn btn-success btn-mini center-block width-123" />
+                                        <input type="submit" onclick="transferStock();" value="Transfer" class="btn btn-success btn-mini center-block width-123" />
                                     </div>
 
                                     <div class="col-md-3">
@@ -388,6 +466,15 @@
     </div>
 
     @*--------------------POP UP ENDS--------------------*@
+
+
+    @*----------------------------POP UP for ADD NEW LOCATION--------------------------------*@
+
+    
+
+
+    @*----------------------------POP UP END ADD NEW LOCATION--------------------------------*@
+
 
 
 
@@ -790,7 +877,7 @@
                                                     </a>
                                                 </div>
 
-                                                <div class="clear"></div>
+                                                <div class="clearfix"></div>
 
                                             </div>
 
@@ -798,7 +885,7 @@
                                         </div>
 
 
-
+                                        <div class="clearfix"></div>
 
 
 
@@ -809,19 +896,81 @@
                                                 </div>
 
                                                 <div class="">
-                                                    <a href="#">
+                                                    <a href="#" class="add_new_warehouse showDiv  mb-10">
                                                         <img class="stock-transfer-img" src="~/img/images/plus.png" />
                                                         <label class="mr-180 font-16">Add New Locations</label>
                                                     </a>
                                                 </div>
 
-                                                <div class="clear"></div>
+                                                
 
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="remove_warehouse_div">
+                                            <div class="form-group pull-left pl-0">
+                                                <label class="control-label pull-left">Location:</label>
+
+
+                                                <select name="ware_house_name" required class="form-control width-170 pull-left">
+                                                    @foreach (var warehouse in ViewBag.Warehouses)
+                                                    {
+                                                        <option value="@warehouse.Id">@warehouse.Name </option>
+                                                    }
+
+
+                                                </select>
+
+
+
+
+
+                                            </div>
+
+
+
+
+                                            <div class="pull-left">
+                                                <label class="control-label pull-left ml-22 mr-5">Shelf No :</label>
+                                                <select name="ware_shelf_number" required class="form-control width-94 pull-left">
+
+                                                    @foreach (var warehouse in ViewBag.Warehouses)
+                                                    {
+                                                        <option value="@warehouse.Id">@warehouse.shelf_number </option>
+                                                    }
+
+                                                </select>
+
+
+
+
+                                            </div>
+
+                                            <div id="addedRows"></div>
+
+
+                                            <div class="form-group pull-left">
+                                                <label class="control-label pull-left ml-22">QTY:</label>
+
+
+                                                <input id="" class="form-control pull-left width-78 ml-5" type="text" name="ware_house_qty" placeholder="" required="" title="admin">
+
+
+
+                                            </div>
+                                            <div>
+                                                <a class=""><img class="del-img-size" src="~/img/images/delete.png"/></a>
                                             </div>
 
 
                                         </div>
 
+
+
+                                        
+                                        <div class="empty-height"></div>
 
                                         <div class="product-border"></div>
 
@@ -841,14 +990,15 @@
                                                 <div class="">
                                                     <label class="supplier-create-texts" for="middle-name">Barcode<span class="required">*</span></label>
                                                     <div class="col-md-3 col-sm-6 col-xs-12">
-                                                        <input class="width-170" type="text" name="barcode" required>
+                                                        <input id="barcode_code" class="width-170" type="text" name="barcode_code" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="">
-                                                    <a href="#">
+                                                    <a href="#" onclick="" data-toggle="modal" data-target="#barcode_modal">
                                                         <img class="add-barcode-img" src="~/img/images/add_barcode.png" />
-                                                        <img class="print-barcode-img" src="~/img/images/barcode_print.png" />
+                                                    </a>
+                                                        <a><img class="print-barcode-img" src="~/img/images/barcode_print.png" />
                                                     </a>
                                                 </div>
 
@@ -1023,13 +1173,9 @@
                                                 </a>
                                             </div>
 
-
+                                            <input id="unique_number" type="hidden" value="@barcode" />
 
                                         </div>
-
-
-
-
 
 
                                     </div>
@@ -1070,6 +1216,7 @@
 
                                     <div class="col-md-3">
                                         <input type="submit" value="Save" class="btn btn-success btn-mini center-block width-145" />
+                                        @*<input id="unique_number" type="hidden" value=""/>*@
                                     </div>
 
                                     <div class="col-md-3">
@@ -1077,7 +1224,7 @@
                                     </div>
                                     <div class="col-md-3"></div>
 
-
+                                    
 
                                 </div>
 
@@ -1099,6 +1246,9 @@
             </div>
         </div>
     </div>
+
+
+   
 
     @*----------------------------POP UP END ADD PRODUCT--------------------------------*@
 
@@ -1581,6 +1731,79 @@
 
 
     <script>
+        function Barcode_Ok() {
+            var v=$("#barcode_label").val;
+            if (v == "") {
+                alert(v);
+                alert("EMPTY");
+            }
+            else {
+
+                alert("NOT EMPTY");
+                alert(v);
+                $("#barcode_code").val = v;
+                $("#barcode_code").disabled;
+                $(".barcode_modal").addClass("none");
+
+            }
+        }
+
+
+    </script>
+
+
+    <script>
+        function barcode_generator() {
+            var unique = document.getElementById("unique_number").value;
+
+            document.getElementById("barcode_code").value = unique;
+            document.getElementById("barcode_code").readOnly = true;
+
+        }
+
+    </script>
+
+
+
+
+
+    <script>
+        $('.add_new_warehouse').click(function () {
+            $(this).after('<div class="ml-16 remove_warehouse_div"><div class="form-group pull-left"><label class="control-label pull-left">Location:</label><select name="ware_house_name" required class="form-control width-170 pull-left">@foreach (var warehouse in ViewBag.Warehouses){<option value="@warehouse.Id">@warehouse.Name </option>}</select></div><div class="pull-left"><label class="control-label pull-left ml-22 mr-5">Shelf No :</label><select name="ware_shelf_number" required class="form-control width-94 pull-left">@foreach (var warehouse in ViewBag.Warehouses){<option value="@warehouse.Id">@warehouse.shelf_number </option>}</select></div><div id="addedRows"></div><div class="form-group pull-left"><label class="control-label pull-left ml-22">QTY:</label><input id="" class="form-control pull-left width-78 ml-5" type="text" name="ware_house_qty" placeholder="" required="" title="admin"></div><div><a class="kashif" onclick="removeWarehouse()"><img class="del-img-size" style="margin-left:-14px;" src="/img/images/delete.png" /></a></div><div class="clearfix"></div></div>');
+        });
+
+        //function removeWarehouse()
+
+        $(document).on('click', '.kashif', function removeWarehouse() {
+            
+            $(this).closest(".remove_warehouse_div").remove();
+
+        //$(this).parent('div').remove();
+
+
+        //function removeWarehouse(){
+        //    $(this).closest(".remove_warehouse_div").remove();
+        //}
+
+        });
+    </script>
+
+    <script>
+        $('.add').click(function () {
+            $(this).before('<div class="block"><input type="text" /><span class="remove">Remove Option</span></div>');
+        });
+
+        $(document).on('click', '.remove', function () {
+            $(this).parent('div').remove();
+        });
+
+
+    </script>
+
+
+   
+
+    <script>
         function cancel_btn() {
 
             //alert("cancel")
@@ -1592,17 +1815,21 @@
         }
     </script>
 
-    <script>
-        //function again_click_modal_btn() {
+    @*<script>
+        function same_warehouse() {
 
-        //    alert("again")
-        //    if (document.getElementById("create_category_modal")) {
-        //        alert("again if")
-        //        $("#create_category_modal").show('slow');
-        //        $("#create_category_modal").show('FAST');
-        //    }
-        //}
-    </script>
+            var From = document.getElementById("from_warehouse").value;
+            var To = document.getElementById("to_warehouse").value;
+
+            if (From == To) {
+                Alert("Both Fields Warehouses Cannot be Same");
+                document.getElementById("from_warehouse").value = "";
+                document.getElementById("to_warehouse").value = "";
+                return false;
+            }
+
+        }
+    </script>*@
 
 
     <script>
@@ -1850,5 +2077,51 @@
 
     </script>
 
+
+    
+
+    <script>
+
+        function transferStock()
+        {
+            
+            var From = document.getElementById("from_warehouse").value;
+            var To = document.getElementById("to_warehouse").value;
+            var Quantity = document.getElementById("quantity").value;
+            
+
+            if (From == To) {
+                alert("ERROR Same Warehouses");
+            }
+
+            else {
+                $.ajax({
+
+                    url: "/Product/TransferStock/",
+                    data: { from: From, to: To, quantity: Quantity },
+                    cache: false,
+                    type: "Get",
+                    success: function (data) {
+                        
+                    },
+                    error: function (response) {
+
+                        alert("error");
+
+                    }
+
+                })
+            }
+        }
+
+    </script>
+
+
+    <script>
+        function warehouse_show() {
+            $("#show_warehouse").removeClass("none");
+            $("#show_warehouse").addClass("showDiv");
+        }
+    </script>
 
 </body>

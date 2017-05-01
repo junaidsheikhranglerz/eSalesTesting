@@ -34,6 +34,8 @@ function excludeVatUnchecked() {
         $("#price_vat_td").addClass("none");
         $("#total_vat_th").addClass("none");
         $("#total_vat_td").addClass("none");
+        $("#vat_td").removeClass('border-right-td');
+        $("#price_vat").removeClass('border-right-td');
     }
 
     else {
@@ -45,6 +47,8 @@ function excludeVatUnchecked() {
         $("#price_vat_td").addClass("showDiv");
         $("#total_vat_th").addClass("showDiv");
         $("#total_vat_td").addClass("showDiv");
+        $("#vat_td").addClass('border-right-td');
+        $("#price_vat").addClass('border-right-td');
     }
 }
 
@@ -104,4 +108,14 @@ function Add() {
     document.getElementById("PremiumTotal").value = c + ((c * 20) / 100)
     document.getElementById("OtherTotal").value = d + ((d * 20) / 100)
     document.getElementById("CostTotal").value = e + ((e * 20) / 100)
+}
+
+function Different_Address() {
+    if (document.getElementById("billing_address_checkbox").checked) {
+        $("#Shipping_Address_Div").addClass('none');
+    }
+    else {
+        $("#Shipping_Address_Div").removeClass('none');
+        $("#Shipping_Address_Div").addClass('showDiv');
+    }
 }
