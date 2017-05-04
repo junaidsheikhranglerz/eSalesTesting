@@ -262,20 +262,19 @@ function run_invoice() {
 
 
 //---------------------New Invoice Existing Customer---------------------
-function go(id) {
+function go(id,type_id) {
     var name = document.getElementById('juni1' + id);
     var phone = document.getElementById('juni2' + id);
     var address = document.getElementById('juni3' + id);
     var postcode = document.getElementById('juni4' + id);
     var email = document.getElementById('juni5' + id);
-    var type = document.getElementById('juni6' + id);
+    var type1 = type_id;
 
     var name1 = name.innerHTML
     var phone1 = phone.innerHTML
     var address1 = address.innerHTML
     var postcode1 = postcode.innerHTML
     var email1 = email.innerHTML
-    var type1 = type.innerHTML
 
     //alert(name1);
     //alert(phone1);

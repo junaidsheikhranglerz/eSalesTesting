@@ -60,7 +60,7 @@
 
 
                                         <div class="col-md-6 pull-left">
-                                            <a href="#" data-toggle="modal" data-target="#ExistingModal">
+                                            <a href="#" data-toggle="modal" onclick="abc()" data-target="#ExistingModal">
                                                 <span class=""><img src="~/img/images/search_customer.png" /></span><br />
                                                 <span class="bold">Existing Customer</span>
                                             </a>
@@ -380,12 +380,12 @@
 
                                     <div class="col-md-2 pull-left pl-0 pr-0">
                                         <ul class="list-style-type-custom">
-                                            <li id="type_customer" class="bold font-18 black-color"></li>
-                                            <li id="customer_name"></li>
-                                            <li id="customer_address"></li>
-                                            <li id="customer_postcode"></li>
-                                            <li id="customer_phone"></li>
-                                            <li id="customer_email"></li>
+                                            <li id="type_customer_quote" class="bold font-18 black-color"></li>
+                                            <li id="customer_name_quote"></li>
+                                            <li id="customer_address_quote"></li>
+                                            <li id="customer_postcode_quote"></li>
+                                            <li id="customer_phone_quote"></li>
+                                            <li id="customer_email_quote"></li>
                                         </ul>
                                     </div>
 
@@ -615,12 +615,12 @@
 
                                     <div class="col-md-2 pull-left pl-0 pr-0">
                                         <ul class="list-style-type-custom">
-                                            <li id="type_customer" class="bold font-18 black-color"></li>
-                                            <li id="customer_name"></li>
-                                            <li id="customer_address"></li>
-                                            <li id="customer_postcode"></li>
-                                            <li id="customer_phone"></li>
-                                            <li id="customer_email"></li>
+                                            <li id="type_customer_item_sale" class="bold font-18 black-color"></li>
+                                            <li id="customer_name_item_sale"></li>
+                                            <li id="customer_address_item_sale"></li>
+                                            <li id="customer_postcode_item_sale"></li>
+                                            <li id="customer_phone_item_sale"></li>
+                                            <li id="customer_email_item_sale"></li>
                                         </ul>
                                     </div>
 
@@ -863,58 +863,7 @@
     </footer>
 
 
-    @*----------------------------POP UP for CUSTOMER SUMMARY--------------------------------*@
-
-    <div class="modal fade" id="customer_modal" tabindex="-1" role="dialog" aria-hidden="false">
-        <div class="modal-dialog modal-md">
-            <div class="modal-content modal-style-custom">
-
-                <div class="title col-md-12">
-                    <span>Message</span>
-                    <img src="~/img/images/c3.png" class="close mr--13 pull-right" data-dismiss="modal" />
-                </div>
-
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="x_panel">
-
-                        <div class="win text-center">
-                            <h3 class="black-color"><b>Find Customer</b></h3>
-
-                            <form id="demo-form2" action="#" method="post" data-parsley-validate class="form-horizontal form-label-left mt-30" enctype="multipart/form-data">
-
-                                <div class="col-md-12">
-
-                                    <div class="form-group">
-                                        <div class="">
-                                            <div class="pull-left">
-                                                <input type="text" name="customer" class="width-320">
-                                                <a href="~/Report/SaleReport" class="btn-primary btn-mini center-block btn-existing-supplier-cancel" style="">Cancel</a>
-                                                <input data-dismiss="modal" onclick="show_customer_summary()" type="button" class="btn-success btn-mini center-block btn-existing-supplier-search" value="Search" />
-
-                                            </div>
-                                        </div>
-
-                                        <div class="clear"></div>
-
-                                    </div>
-
-                                </div>
-                            </form>
-
-
-                        </div>
-
-
-                    </div>
-                </div>
-
-                <div class="modal-footer"></div>
-
-            </div>
-        </div>
-    </div>
-
-    @*----------------------------POP UP END CUSTOMER SUMMARY--------------------------------*@
+  
 
     @*----------------------------POP UP for EXISTING CUSTOMER--------------------------------*@
 
@@ -935,31 +884,68 @@
 
                             <div class="empty-height"></div><div class="empty-height"></div>
 
-                            <table id="customer_list_tablee" class="table table-responsive border_black">
-                                <thead>
-                                    <tr class="table-heading-fonts table-main-headings">
-                                        <th class="text-center">Name</th>
-                                        <th class="text-center">Phone</th>
-                                        <th class="text-center">Address</th>
-                                        <th class="text-center">Postcode</th>
-                                        <th class="text-center">Email</th>
-                                    </tr>
-                                </thead>
 
-                                <tbody class="black-color bold" id="existing_customer_list">
-                                    @foreach (var v in ViewBag.Customer)
-                                    {
-                                        <tr onclick="go(@v.Id);closeWindow();">
-                                            <td id="@String.Concat("juni1", v.Id)" data-title="User ID">@v.Name</td>
-                                            <td id="@String.Concat("juni2", v.Id)" data-title="First Name">@v.phone</td>
-                                            <td id="@String.Concat("juni3", v.Id)" data-title="Last Name">@v.Billing_Address</td>
-                                            <td id="@String.Concat("juni4", v.Id)" data-title="Last Name">@v.Billing_Postcode</td>
-                                            <td id="@String.Concat("juni5", v.Id)" data-title="Email" class="user-emails">@v.Email</td>
-                                            <td id="@String.Concat("juni6", v.Id)" class="hidden">@v.Customer_Type_Id</td>
+
+                            <div class="col-md-12">
+                                <table border="0" class="table table-responsive border_black" id="kj">
+                                    <thead>
+                                        <tr class="table-heading-fonts table-main-headings">
+                                            <th class="text-center">Name</th>
+                                            <th class="text-center">Phone</th>
+                                            <th class="text-center">Address</th>
+                                            <th class="text-center">Postcode</th>
+                                            <th class="text-center">Email</th>
                                         </tr>
+                                    </thead>
+
+                                    <tbody class="black-color bold" id="">
+                                        @foreach (var v in ViewBag.Customer)
+{
+    <tr onclick="go(@v.Id,@v.Customer_Type_Id)">
+        <td id="@String.Concat("juni1", v.Id)" data-title="User ID">@v.Name</td>
+        <td id="@String.Concat("juni2", v.Id)" data-title="First Name">@v.phone</td>
+        <td id="@String.Concat("juni3", v.Id)" data-title="Last Name">@v.Billing_Address</td>
+        <td id="@String.Concat("juni4", v.Id)" data-title="Last Name">@v.Billing_Postcode</td>
+        <td id="@String.Concat("juni5", v.Id)" data-title="Email" class="user-emails">@v.Email</td>
+
+    </tr>
+}
+                                    </tbody>
+                                </table>
+                                <div class="clearfix"></div>
+                            </div>
+
+
+                                @*<table id="00" class="table table-responsive border_black">*@
+                                @*<table border="0" class="table table-responsive border_black" id="kj">
+                                    <thead>
+                                        <tr class="table-heading-fonts table-main-headings">
+                                            <th class="text-center">Name</th>
+                                            <th class="text-center">Phone</th>
+                                            <th class="text-center">Address</th>
+                                            <th class="text-center">Postcode</th>
+                                            <th class="text-center">Email</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody class="black-color bold" id="">
+                                        @foreach (var v in ViewBag.Customer)
+                                    {
+                                            <tr onclick="go(@v.Id)">
+                                                <td id="@String.Concat("juni1", v.Id)" data-title="User ID">@v.Name</td>
+                                                <td id="@String.Concat("juni2", v.Id)" data-title="First Name">@v.phone</td>
+                                                <td id="@String.Concat("juni3", v.Id)" data-title="Last Name">@v.Billing_Address</td>
+                                                <td id="@String.Concat("juni4", v.Id)" data-title="Last Name">@v.Billing_Postcode</td>
+                                                <td id="@String.Concat("juni5", v.Id)" data-title="Email" class="user-emails">@v.Email</td>
+                                                <td id="@String.Concat("juni6", v.Id)" class="hidden">@v.Customer_Type_Id</td>
+                                            </tr>
                                     }
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>*@
+
+
+
+
                         </div>
                     </div>
                 </div>
@@ -1233,8 +1219,7 @@
 
     @*----------------------------POP UP END ADD CUSTOMER--------------------------------*@
 
-    <script src="~/Scripts/new-js/jquery-1.11.1.min.js"></script>
-    <script src="~/Scripts/new-js/jquery.datatables.min.js"></script>
+  
 
     @*----------------------QUOTE ADD ROW-----------------------*@
     <script>
@@ -1287,17 +1272,15 @@
     </script>
 
     @*----------------------ITEM SALE ADD ROW-----------------------*@
-
-    <script>
-    
-    </script>
+    <script src="~/Scripts/new-js/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/new-js/jquery.datatables.min.js"></script>
 
     <script>
         $(document).ready(function () {
-            ALERT("SAJKDHSAJKHD");
-            $('#customer_list_tablee').dataTable();
+            $('#kj').dataTable();
         });
     </script>
+
 
     @*----------------------INVOICE ADD ROW-----------------------*@
     <script>
@@ -1322,119 +1305,5 @@
         });
     </script>
     @*----------------------INVOICE ADD ROW-----------------------*@
-
-    @*<script type="text/javascript">
-            var rowCount = 1;
-            function addMoreRows(frm) {
-                rowCount++;
-                var recRow = '<p id="rowCount' + rowCount + '"><tr><td><input  name="" class="width-43" type="text"/></td></tr> <a href="javascript:void(0);" onclick="removeRow(' + rowCount + ');">Delete</a></p>';
-                jQuery('#addedRows').append(recRow);
-            }
-
-            function removeRow(removeNum) {
-                jQuery('#rowCount' + removeNum).remove();
-            }
-        </script>*@
-
-    @*<script>
-
-        $("#addrows").click(function () {
-            $('#maintable tr:last').after('<tr id="rowId" class="font-17"><td><input class="new-invoice-width-boxes unbold" name="" type="text" /></td><td><textarea class="description-text-area unbold" required></textarea></td><td><input class="new-invoice-width-boxes unbold" name="" type="text" /></td><td><input class="new-invoice-width-boxes unbold" name="" type="text" /></td><td id="price_vat_td"><input class="new-invoice-width-boxes unbold" name="" type="text" /></td><td>£0</td><td id="total_vat_td">£246</td><td>£246</td><td class="text-center"><a href="#" id="addrows"><img src="/img/images/plus_new_sale.png"/></a><a href="#" class="remove"><img src="/img/images/cross_new_sale.png" style="margin-left:4px;"/></a><a href="#"><img src="/img/images/barcode_new_sale.png" style="margin-left:5px;"/></a><a href="#"><img src="/img/images/findpost.png" style="margin-left:5px;"/></a></td></tr>');
-            //$('#maintable tr:last').after('<tr id="delete_tr"><td><input class="width-43" name="" type="text" /></td><td><textarea class="textarea-style width-250"></textarea></td><td><input class="width-43" name="" type="text" /></td><td><input class="width-43" name="" type="text" /></td><td id="price_vat_td"><input class="width-43" name="" type="text" /></td><td>£123</td><td id="total_vat_td">£246</td><td>£246</td><td class="text-center"><a href="#" id="addrows" style="margin-left: 3px;"><img src="../img/images/24.png"/></a><a class="remove" style="margin-left: 3px;" href="#"><img src="../img/images/24.png" /></a><a href="#" style="margin-left: 3px;"><img src="../img/images/24.png" /></a><a style="margin-left: 3px;" href="#"><img src="../img/images/24.png" /></a><a href="#" style="margin-left: 3px;"><img src="../img/images/24.png" /></a><a href="#" style="margin-left: 3px;"><img src="../img/images/24.png" /></a></td></tr>');
-            $('.remove').click(function () {
-                $(this).closest('tr').remove();
-            });
-        });
-
-
-    </script>*@
-
-
-
-
-
-
-
-
-    @*<script>
-        function show_customer_summary() {
-            $("#customer_summary").removeClass("none");
-            $("#customer_summary").addClass("showDiv");
-            $("#date_click_div").addClass("none");
-        }
-    </script>
-
-    <script>
-        function showDateDiv() {
-            var to = document.getElementById("to_date").value;
-            $("#date_click_div").removeClass("none");
-            $("#date_click_div").addClass("showDiv");
-            $("#customer_summary").addClass("none");
-        }
-
-
-    </script>*@
-
-    @*<script>
-        function showToDate() {
-            var from = document.getElementById("from_date").value;
-
-            if (from == "") {
-            }
-
-            else {
-                document.getElementById("to_date").removeAttribute('disabled');
-            }
-        }
-
-
-    </script>*@
-
-
-    @*<script>
-
-        function myDate() {
-            var date = new Date(document.getElementById("to_date")).toDateString("yyyy-MM-dd");
-        }
-
-    </script>
-
-    
-    <script>
-        function PrintBtn() {
-            $("#crud_btn_hide").addClass("none");
-            $("#side_navi_hide").addClass("none");
-
-            window.print();
-        }
-    </script>*@
-
-    @*<script>
-        function excludeVAT() {
-
-            var v = document.getElementById("excludeVat").value;
-
-            if (v == 1) {
-                alert("Checked");
-                $("#price_vat_th").addClass("none");
-                $("#price_vat_td").addClass("none");
-                $("#total_vat_th").addClass("none");
-                $("#total_vat_td").addClass("none");
-            }
-
-            else if (v = "") {
-                alert("UNCHECKED")
-                $("#price_vat_th").addClass("showDiv");
-                $("#price_vat_td").addClass("showDiv");
-                $("#total_vat_th").addClass("showDiv");
-                $("#total_vat_td").addClass("showDiv");
-            }
-        }
-    </script>*@
-
-
-
-
-
 
 </body>
