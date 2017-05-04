@@ -36,10 +36,19 @@
         /*height: 549px;*/
     }
 
+    .margin_right_6{
+        margin-right:24px;
+    }
+
 
 }
 
-@media screen and (min-width: 1367px) {}
+@media screen and (min-width: 1367px) {
+    .margin_right_6{
+        margin-right:100px;
+    }
+
+}
 
 
 
