@@ -26,29 +26,51 @@ function PrintBtn() {
     window.print();
 }
 
+function excludeVatQuote() {
+    if (document.getElementById("excludeVatQuoteId").checked) {
+        $(".hidecolumnQuote").hide();
+    }
+
+    else {
+        $(".hidecolumnQuote").show();
+    }
+}
+
 function excludeVatUnchecked() {
 
 
     if (document.getElementById("excludeVat").checked) {
-        $("#price_vat_th").addClass("none");
-        $("#price_vat_td").addClass("none");
-        $("#total_vat_th").addClass("none");
-        $("#total_vat_td").addClass("none");
-        $("#vat_td").removeClass('border-right-td');
-        $("#price_vat").removeClass('border-right-td');
+        $(".hidecolumn").hide();
     }
 
     else {
-        $("#price_vat_th").removeClass("none");
-        $("#price_vat_td").removeClass("none");
-        $("#total_vat_th").removeClass("none");
-        $("#total_vat_td").removeClass("none");
-        $("#price_vat_th").addClass("showDiv");
-        $("#price_vat_td").addClass("showDiv");
-        $("#total_vat_th").addClass("showDiv");
-        $("#total_vat_td").addClass("showDiv");
-        $("#vat_td").addClass('border-right-td');
-        $("#price_vat").addClass('border-right-td');
+        $(".hidecolumn").show();
+    }
+}
+
+function excludeVatQuote() {
+
+
+    if (document.getElementById("excludeVatQuote").checked) {
+        $("#price_vat_th_quote").addClass("none");
+        $("#price_vat_td_quote").addClass("none");
+        $("#total_vat_th_quote").addClass("none");
+        $("#total_vat_td_quote").addClass("none");
+        $("#vat_td_quote").removeClass('border-right-td');
+        $("#price_vat_quote").removeClass('border-right-td');
+    }
+
+    else {
+        $("#price_vat_th_quote").removeClass("none");
+        $("#price_vat_td_quote").removeClass("none");
+        $("#total_vat_th_quote").removeClass("none");
+        $("#total_vat_td_quote").removeClass("none");
+        $("#price_vat_th_quote").addClass("showDiv");
+        $("#price_vat_td_quote").addClass("showDiv");
+        $("#total_vat_th_quote").addClass("showDiv");
+        $("#total_vat_td_quote").addClass("showDiv");
+        $("#vat_td_quote").addClass('border-right-td');
+        $("#price_vat_quote").addClass('border-right-td');
     }
 }
 
@@ -119,3 +141,253 @@ function Different_Address() {
         $("#Shipping_Address_Div").addClass('showDiv');
     }
 }
+
+//function myNewFunction(element) {
+//    var text = element.options[element.selectedIndex].text;
+//    var kk = document.getElementById("language").innerHTML = text;
+//    alert(kk);
+    
+//}
+
+function show_custom_date_payment() {
+    var selectedValue = document.getElementById("custom_date_select_invoice").value;
+
+    if (selectedValue == 1) {
+        $("#custom_date_show_invoice").show();
+    }
+    else {
+        $("#custom_date_show_invoice").hide();
+    }
+}
+
+function run_invoice() {
+    var selectedValue = document.getElementById("language").value;
+    //alert(selectedValue);
+    if (selectedValue == 1) {
+        $(".hideDocument").hide();
+    }
+
+    else if (selectedValue == 2) {
+
+        //var a = $("#language option:selected").text();
+        //alert(a);
+
+        //var a = $('#language option[value="someValue"]').text("qttt");
+        //alert(a);
+        
+
+        //$("#language").innerHTML(a);
+
+        //var c = document.getElementById("language").innerHTML(a);
+        //alert(c);
+    }
+
+    else if (selectedValue == 3) {
+        //var b = $("#language option:selected").text();
+        //alert(b);
+
+        //$("#language").val("Item Sale");
+
+     
+        
+    }
+}
+
+//function run_quote(){
+//    var selectedValue = document.getElementById("language1").value;
+
+
+//    if (selectedValue == 1) {
+//        //$("#language1") = "Invoice";
+//        $("#item_sale_id").hide();
+//        $("#quote_id").hide();
+//        $("#invoice_id").show();
+//    }
+
+//    else if (selectedValue == 2) {
+//        //$("#language1") = "Quote";
+//        $("#invoice_id").hide();
+//        $("#item_sale_id").hide();
+//        $("#quote_id").show();
+//    }
+
+//    else if (selectedValue == 3) {
+//        //$("#language1") = "Item Sale";
+//        $("#invoice_id").hide();
+//        $("#quote_id").hide();
+//        $("#item_sale_id").show();
+
+//    }
+//}
+
+
+//function run_item_sale() {
+//    var selectedValue = document.getElementById("language2").value;
+
+//    if (selectedValue == 1) {
+//        //$("#language2") = "Invoice";
+//        $("#item_sale_id").hide();
+//        $("#quote_id").hide();
+//        $("#invoice_id").show();
+//    }
+
+//    else if (selectedValue == 2) {
+//        //$("#language2") = "Quote";
+//        $("#invoice_id").hide();
+//        $("#item_sale_id").hide();
+//        $("#quote_id").show();
+//    }
+
+//    else if (selectedValue == 3) {
+//        //$("#language2") = "Item Sale";
+//        $("#invoice_id").hide();
+//        $("#quote_id").hide();
+//        $("#item_sale_id").show();
+
+//    }
+//}
+
+
+//---------------------New Invoice Existing Customer---------------------
+function go(id) {
+    var name = document.getElementById('juni1' + id);
+    var phone = document.getElementById('juni2' + id);
+    var address = document.getElementById('juni3' + id);
+    var postcode = document.getElementById('juni4' + id);
+    var email = document.getElementById('juni5' + id);
+    var type = document.getElementById('juni6' + id);
+
+    var name1 = name.innerHTML
+    var phone1 = phone.innerHTML
+    var address1 = address.innerHTML
+    var postcode1 = postcode.innerHTML
+    var email1 = email.innerHTML
+    var type1 = type.innerHTML
+
+    //alert(name1);
+    //alert(phone1);
+    //alert(address1);
+    //alert(postcode1);
+    //alert(email1);
+    //alert(type1);
+
+    //$("#ExistingModal").hide;
+
+
+    $("#customer_name").text(name1);
+    $("#customer_address").text(phone1);
+    $("#customer_postcode").text(address1);
+    $("#customer_phone").text(postcode1);
+    $("#customer_email").text(email1);
+
+    if (type1 == 1) {
+        $("#type_customer").text("Normal Customer");
+    }
+    else if (type1 == 2) {
+        $("#type_customer").text("Premium Customer");
+    }
+
+    else if (type1 == 3) {
+        $("#type_customer").text("Trade Customer");
+    }
+    else if (type1 == 4) {
+        $("#type_customer").text("Other Customer");
+    }
+
+
+    $("#customer_name_quote").text(name1);
+    $("#customer_address_quote").text(phone1);
+    $("#customer_postcode_quote").text(address1);
+    $("#customer_phone_quote").text(postcode1);
+    $("#customer_email_quote").text(email1);
+
+    if (type1 == 1) {
+        $("#type_customer_quote").text("Normal Customer");
+    }
+    else if (type1 == 2) {
+        $("#type_customer_quote").text("Premium Customer");
+    }
+
+    else if (type1 == 3) {
+        $("#type_customer_quote").text("Trade Customer");
+    }
+    else if (type1 == 4) {
+        $("#type_customer_quote").text("Other Customer");
+    }
+
+    $("#customer_name_item_sale").text(name1);
+    $("#customer_address_item_sale").text(phone1);
+    $("#customer_postcode_item_sale").text(address1);
+    $("#customer_phone_item_sale").text(postcode1);
+    $("#customer_email_item_sale").text(email1);
+    
+
+    if (type1 == 1) {
+        $("#type_customer_item_sale").text("Normal Customer");
+    }
+    else if (type1 == 2) {
+        $("#type_customer_item_sale").text("Premium Customer");
+    }
+
+    else if (type1 == 3) {
+        $("#type_customer_item_sale").text("Trade Customer");
+    }
+    else if (type1 == 4) {
+        $("#type_customer_item_sale").text("Other Customer");
+    }
+
+    $("#ExistingModal").hide('slow');
+    //$("#ExistingModal").closest();
+
+
+
+
+    //var name = $("#existing_customer_name").val()
+    //alert(name);
+    //var phone = $("#existing_customer_phone").val;
+    //alert(phone);
+    //var address = $("#existing_customer_billing_address").val;
+    //alert(address);
+    //var post = $("#existing_customer_billing_postcode").val;
+    //alert(post);
+    //var mail = $("#existing_customer_email").val;
+    //alert(mail);
+    //var type = $("#c_type").val;
+    //alert(type);
+}
+//---------------------New Invoice Existing Customer---------------------
+
+
+
+function clear_customer_li() {
+    //INVOICE
+    $("#customer_name").text("");
+    $("#customer_address").text("");
+    $("#customer_postcode").text("");
+    $("#customer_phone").text("");
+    $("#customer_email").text("");
+    $("#type_customer").text("");
+
+
+    //QUOTE
+    $("#customer_name_quote").text("");
+    $("#customer_address_quote").text("");
+    $("#customer_postcode_quote").text("");
+    $("#customer_phone_quote").text("");
+    $("#customer_email_quote").text("");
+    $("#type_customer_quote").text("");
+
+    //ITEM SALE
+    $("#customer_name_item_sale").text("");
+    $("#customer_address_item_sale").text("");
+    $("#customer_postcode_item_sale").text("");
+    $("#customer_phone_item_sale").text("");
+    $("#customer_email_item_sale").text("");
+    $("#type_customer_item_sale").text("");
+
+
+}
+
+//--------------------NEW INVOICE -------- ADD NEW ROW IN TABLE--------------------
+
+//--------------------NEW INVOICE -------- ADD NEW ROW IN TABLE--------------------
