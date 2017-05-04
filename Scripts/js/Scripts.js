@@ -164,10 +164,16 @@ function run_invoice() {
     var selectedValue = document.getElementById("language").value;
     //alert(selectedValue);
     if (selectedValue == 1) {
-        $(".hideDocument").hide();
+        $("#invoice_id").show();
+        $("#quote_id").hide();
+        $("#item_sale_id").hide();
     }
 
     else if (selectedValue == 2) {
+
+        $("#quote_id").show();
+        $("#invoice_id").hide();
+        $("#item_sale_id").hide();
 
         //var a = $("#language option:selected").text();
         //alert(a);
@@ -183,6 +189,13 @@ function run_invoice() {
     }
 
     else if (selectedValue == 3) {
+
+        $("#item_sale_id").show();
+        $("#invoice_id").hide();
+        $("#quote_id").hide();
+
+
+
         //var b = $("#language option:selected").text();
         //alert(b);
 
