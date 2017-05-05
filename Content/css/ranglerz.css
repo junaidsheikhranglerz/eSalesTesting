@@ -811,7 +811,18 @@
     margin-top:-25px;
 }
 
-#customer_list_tablee tbody tr:hover td{
+.width-27p{
+    width:27%;
+}
+
+.total_invoice_background {
+    background-color: #2F4F4F;
+    color: #fff;
+    padding: 3px;
+    border-radius: 6px;
+}
+
+#kj tbody tr:hover td{
     background-color:#b94a48;
     cursor: pointer;
 }
