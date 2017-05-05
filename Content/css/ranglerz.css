@@ -1294,3 +1294,8 @@
 .border-right-td{
     border-right:solid 2px black;
 }
+
+#partial_table_add tbody tr:hover td{
+    background-color:#b94a48;
+    cursor: pointer;
+}
