@@ -97,7 +97,7 @@
                                             <label class="font-16 black-color mt-5 pull-left end_margin_left">End Date :</label>
                                         @*</div>*@
                                         <div class="col-md-2 pull-left">
-                                            <input required type="date" id="" oninput="showToDate()" class="date-width-height-data-report" name="from_date">
+                                            <input required type="date" disabled id="to_date" oninput="showDateDiv()" class="date-width-height-data-report" name="from_date">
                                         </div>
 
                                     
@@ -169,7 +169,7 @@
 
                                     <tr>
                                         <td data-title="User ID">TR-01</td>
-                                        <td data-title="User ID">Quote</td>
+                                        <td data-title="User ID">Invoice</td>
                                         <td data-title="User ID">CCTV</td>
                                         <td data-title="User ID">185 Jermyn Street</td>
                                         <td data-title="User ID">1234</td>
@@ -244,6 +244,7 @@
     </div>
 
 
+
     <script src="~/Scripts/new-js/jquery-1.11.1.min.js"></script>
     <script src="~/Scripts/new-js/jquery.datatables.min.js"></script>
 
@@ -251,9 +252,6 @@
         function data_report_table() {
             $('#data_report_table_div').show();
         }
-
-
-
     </script>
 
     <script>
