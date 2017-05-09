@@ -109,7 +109,7 @@
 
                                     <div class="col-md-12">
                                        <div class="pull-left ml-15"><label class="black-color"><input type="checkbox" />Transaction No</label></div>
-                                       <div class="pull-left"><label class="black-color margin_label"><input type="checkbox" class="margin_checkox" />Trans_type</label></div>
+                                       <div class="pull-left"><label class="black-color margin_label"><input type="checkbox" class="margin_checkox" />Trans Type</label></div>
                                        <div class="pull-left"><label class="black-color margin_label"><input type="checkbox" class="margin_checkox" />Buyer Name</label></div>
                                        <div class="pull-left"><label class="black-color margin_label"><input type="checkbox" class="margin_checkox" />Phone</label></div>
                                        <div class="pull-left"><label class="black-color margin_label"><input type="checkbox" class="margin_checkox" />Email</label></div>
@@ -145,10 +145,10 @@
 
                         <div class="empty-height"></div><div class="empty-height"></div><div class="empty-height"></div>
 
-                        <div class="col-md-12">
-                            <table border="0" class="table table-responsive border_black" id="1212" >
+                        <div class="col-md-12" id="data_report_table_div" style="display:none">
+                            <table border="0" class="table table-responsive border_black" id="data_report_table">
                                 <thead>
-                                    
+
                                     <tr class="table-heading-fonts table-main-headings">
                                         <th>Transaction No.</th>
                                         <th>Trans Type</th>
@@ -164,21 +164,21 @@
                                     </tr>
 
                                 </thead>
-                                
+
                                 <tbody class="black-color bold">
 
                                     <tr>
-                                        <td data-title="User ID">07-07-2007</td>
-                                        <td data-title="User ID">SKU-1111</td>
-                                        <td data-title="User ID">1000</td>
-                                        <td data-title="User ID">£10</td>
-                                        <td data-title="User ID">£2</td>
-                                        <td data-title="User ID">07-07-2007</td>
-                                        <td data-title="User ID">SKU-1111</td>
-                                        <td data-title="User ID">1000</td>
-                                        <td data-title="User ID">£10</td>
-                                        <td data-title="User ID">£2</td>
-                                        <td data-title="User ID">£12</td>
+                                        <td data-title="User ID">TR-01</td>
+                                        <td data-title="User ID">Quote</td>
+                                        <td data-title="User ID">CCTV</td>
+                                        <td data-title="User ID">185 Jermyn Street</td>
+                                        <td data-title="User ID">1234</td>
+                                        <td data-title="User ID">test@esalespro.com</td>
+                                        <td data-title="User ID">2410-G</td>
+                                        <td data-title="User ID">1</td>
+                                        <td data-title="User ID">£25</td>
+                                        <td data-title="User ID">1-1-17</td>
+                                        <td data-title="User ID">Paid</td>
 
                                     </tr>
 
@@ -249,7 +249,7 @@
 
     <script>
         function data_report_table() {
-
+            $('#data_report_table_div').show();
         }
 
 
@@ -258,7 +258,7 @@
 
     <script>
         $(document).ready(function () {
-            $('#1212').dataTable();
+            $('#data_report_table').dataTable();
         });
     </script>
 
