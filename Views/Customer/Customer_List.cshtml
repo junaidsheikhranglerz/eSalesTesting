@@ -32,33 +32,36 @@
                                         <h3 class="bold update-stock-margin"><small></small></h3>
                                     </div>*@
 
-                                <div class="pull-left">
+                                <div class="pull-left col-md-3 pl-0">
                                     <a href="~/Home/Epos" class="btn btn-primary blue-btn-style mt-10 btn-mini bold">Back to EPOS Main Panel</a>
                                 </div>
 
+                                <div class="empty-height"></div>
+                                <div class="col-md-9 pr-0">
+                                   
 
-                                <div class="mt-10">
-                                    <div class="col-md-2 pull-right">
-                                        <a href="~/Home/Epos" onclick="PrintBtn()" class="btn btn-primary blue-btn-style ml--45 btn-mini text-center width-195 bold">Print</a>
+                                    <div class="col-md-2 pull-left"></div>
+
+                                    <div class="col-md-2 pull-left"></div>
+
+                                    <div class="col-md-2 pull-left"></div>
+
+                                    <div class="col-md-3 pull-right pr-0">
+                                        <a href="~/Home/Epos" onclick="PrintBtn()" class="btn pull-right btn-primary blue-btn-style btn-mini text-center width-195 bold">Print</a>
                                     </div>
 
-                                    <div class="col-md-2 pull-right">
-                                    </div>
-
-                                    <div class="col-md-2 pull-right">
-                                    </div>
-
-                                    <div class="col-md-2 pull-right">
-                                    </div>
                                 </div>
 
                             </div>
                             <div class="clearfix"></div>
-                            <div class="mt-30">
-                                <div class="col-md-3 pull-left">
+                            
+                            <div class="empty-height"></div><div class="empty-height"></div><div class="empty-height"></div>
+                            
+                            <div class="">
+                                <div class="col-md-3 pull-left width-260">
                                     <h4 class="black-color bold">Choose Customer type : </h4>
                                 </div>
-                                <div class="col-md-2 ml--40 pull-left">
+                                <div class="col-md-2 pull-left padding-all-0">
                                     <select oninput="show_customer_type()" name="customer_type" required class="form-control">
                                         <option value="">Please select any </option>
                                         @foreach (var customer_type in ViewBag.Customer_Type)
@@ -72,9 +75,8 @@
 
                                 </div>
 
-                                <div class="col-md-3 pull-right mb-20">
-                                    @*<a href="#" data-toggle="modal" data-target="#customer_modal" class="btn btn-primary btn-mini bold ml-75">Customer Summary</a>*@
-                                    <a href="#" data-toggle="modal" data-target="#customer_modal" class="btn btn-primary blue-btn-style ml-30 btn-mini text-center width-195 bold">Customer Summary</a>
+                                <div class="col-md-3 pull-right">
+                                    <a href="#" data-toggle="modal" data-target="#customer_modal" class="btn pull-right btn-primary blue-btn-style btn-mini text-center width-195 bold">Customer Summary</a>
                                 </div>
 
                                 <div class="col-md-3"></div>

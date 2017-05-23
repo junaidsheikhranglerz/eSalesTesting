@@ -40,7 +40,7 @@ function SetDate() {
     if (month < 10) month = "0" + month;
     if (day < 10) day = "0" + day;
 
-    var today = year + "-" + month + "-" + day;
+    var today = day + "-" + month + "-" + year;
 
 
     document.getElementById('myDate').value = today;
@@ -76,13 +76,9 @@ function VatQuote() {
 }
 
 function excludeVatUnchecked() {
-
-
     if (document.getElementById("excludeVat").checked) {
         $(".hidecolumn").hide();
-    }
-
-    else {
+    }else {
         $(".hidecolumn").show();
     }
 }
@@ -188,8 +184,58 @@ function Different_Address() {
     
 //}
 
+function payment_status() {
+    var selectedValue = document.getElementById("payment_status_id").value;
+
+    
+
+    if (selectedValue == 1) {
+        $("#custom_date_show_invoice").hide();
+        $("#partial_payment_option").hide();
+        $("#Deposit_payment_option").hide();
+        
+    }
+    else if (selectedValue == 2) {
+        $("#custom_date_show_invoice").hide();
+        $("#partial_payment_option").hide();
+        $("#Deposit_payment_option").hide();
+    }
+    else if (selectedValue == 3) {
+        $("#custom_date_show_invoice").hide();
+        $("#partial_payment_option").show();
+        $("#Deposit_payment_option").hide();
+        document.getElementById("Partial_Payment_Modal").showModal();
+    }
+    else if (selectedValue == 4) {
+        $("#custom_date_show_invoice").hide();
+        $("#partial_payment_option").hide();
+        $("#Deposit_payment_option").show();
+    }
+    else if (selectedValue == 5) {
+        $("#custom_date_show_invoice").hide();
+        $("#partial_payment_option").hide();
+        $("#Deposit_payment_option").hide();
+    }
+
+    else if (selectedValue == 6) {
+        $("#custom_date_show_invoice").hide();
+        $("#partial_payment_option").hide();
+        $("#Deposit_payment_option").hide();
+    }
+    else if (selectedValue == 7) {
+        $("#partial_payment_option").hide();
+        $("#custom_date_show_invoice").hide();
+        $("#Deposit_payment_option").hide();
+    }
+    else if (selectedValue == 8) {
+        $("#partial_payment_option").hide();
+        $("#custom_date_show_invoice").show();
+        $("#Deposit_payment_option").hide();
+    }
+}
+
 function show_custom_date_payment() {
-    var selectedValue = document.getElementById("custom_date_select_invoice").value;
+    //var selectedValue = document.getElementById("payment_status_id").value;
 
     if (selectedValue == 1) {
         $("#custom_date_show_invoice").show();
@@ -367,17 +413,23 @@ function go(id,type_id) {
     var address = document.getElementById('juni3' + id);
     var postcode = document.getElementById('juni4' + id);
     var email = document.getElementById('juni5' + id);
+    var balance = document.getElementById('juni6' + id);
+    var credit = document.getElementById('juni7' + id);
+    var credit_limit = document.getElementById('juni8' + id);
     var type1 = type_id;
     
     
 
     
 
-    var name1 = name.innerHTML
-    var phone1 = phone.innerHTML
-    var address1 = address.innerHTML
-    var postcode1 = postcode.innerHTML
-    var email1 = email.innerHTML
+    var name1 = name.innerHTML;
+    var phone1 = phone.innerHTML;
+    var address1 = address.innerHTML;
+    var postcode1 = postcode.innerHTML;
+    var email1 = email.innerHTML;
+    var balance1 = balance.innerHTML;
+    var credit1 = credit.innerHTML;
+    var credit_limit1 = credit_limit.innerHTML;
 
     //alert(name1);
     //alert(phone1);
@@ -388,12 +440,15 @@ function go(id,type_id) {
 
     //$("#ExistingModal").hide;
 
-
+    
     $("#customer_name").text(name1);
     $("#customer_address").text(phone1);
     $("#customer_postcode").text(address1);
     $("#customer_phone").text(postcode1);
     $("#customer_email").text(email1);
+    $("#customer_balance").text(balance1);
+    $("#customer_credit").text(credit1);
+    $("#customer_credit_limit").text(credit_limit1);
     $("#exist_customer_id").val(id);
 
     
@@ -478,6 +533,22 @@ function go(id,type_id) {
 //---------------------New Invoice Existing Customer---------------------
 
 
+function customer_credit() {
+    var balance = document.getElementById("customer_balance");
+    var balance1 = balance.innerHTML;
+    //alert(balance1);
+    
+    
+
+    if (balance1 <= 0) {
+        $(".displayDIV").hide();
+    }
+    else {
+        $(".displayDIV").show();
+        $("#outstanding_balance").val("£" + balance1);
+    }
+}
+
 
 function clear_customer_li() {
     //INVOICE
@@ -487,7 +558,7 @@ function clear_customer_li() {
     $("#customer_phone").text("");
     $("#customer_email").text("");
     $("#type_customer").text("");
-
+    
 
     //QUOTE
     $("#customer_name_quote").text("");
