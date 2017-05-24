@@ -69,7 +69,7 @@ function VatQuote() {
         //alert("checked");//alert("checked");//alert("checked");
         $(".hidecolumnQuote").hide();
     }
-
+        //alert("checked");//alert("checked");//alert("checked");
     else {
         $(".hidecolumnQuote").show();
     }
