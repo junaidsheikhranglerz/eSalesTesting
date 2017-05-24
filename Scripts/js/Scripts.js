@@ -66,7 +66,7 @@ function PrintBtn() {
 function VatQuote() {
     
     if (document.getElementById("QuoteId").checked) {
-        //alert("checked");
+        //alert("checked");//alert("checked");//alert("checked");
         $(".hidecolumnQuote").hide();
     }
 
