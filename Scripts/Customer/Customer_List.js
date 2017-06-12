@@ -82,6 +82,7 @@
     }
     else if (type1 == 4) {
         $("#type_customer_quote").text("Other Customer");
+        //$("#type_customer_quote").text("Other Customer");
     }
 
     $("#customer_name_item_sale").text(name1);
