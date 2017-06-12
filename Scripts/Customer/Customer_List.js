@@ -29,6 +29,8 @@
     //alert(email1);
     //alert(type1);
 
+    //$("#ExistingModal").hide;   //alert(type1);
+
     //$("#ExistingModal").hide;
 
 
