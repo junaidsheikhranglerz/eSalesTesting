@@ -1,5 +1,5 @@
 ﻿@model List<eSalesPro.Models.Customer>
-<body id="body-index">
+<body id="body-index" onload="">
     <div id="sticky-footer-wrap">
 
         @*-----------------Top Navigation Start---------------*@
@@ -57,35 +57,35 @@
                             
                             <div class="empty-height"></div><div class="empty-height"></div><div class="empty-height"></div>
                             
-                            <div class="">
-                                <div class="col-md-3 pull-left width-260">
-                                    <h4 class="black-color bold">Choose Customer type : </h4>
+                            
+                                <div class="">
+                                    <div class="col-md-3 pull-left width-260">
+                                        <h4 class="black-color bold">Choose Customer type : </h4>
+                                    </div>
+                                    <div class="col-md-2 pull-left padding-all-0">
+                                        <select oninput="Custom_List()" name="customer_type" id="customer_type_dropdown" required class="form-control">
+                                            <option>Please Select any</option>
+                                            @foreach (var customer_type in ViewBag.Customer_Type)
+                                            {
+                                                <option value="@customer_type.Id">@customer_type.Type</option>
+                                            }
+                                        </select>
+
+
+
+
+                                    </div>
+
+                                    <div class="col-md-3 pull-right">
+                                        <a href="#" data-toggle="modal" data-target="#ExistingModal" class="btn pull-right btn-primary blue-btn-style btn-mini text-center width-195 bold">Customer Summary</a>
+                                    </div>
+
+                                    <div class="col-md-3"></div>
                                 </div>
-                                <div class="col-md-2 pull-left padding-all-0">
-                                    <select oninput="show_customer_type()" name="customer_type" required class="form-control">
-                                        <option value="">Please select any </option>
-                                        @foreach (var customer_type in ViewBag.Customer_Type)
-                                        {
-                                            <option value="@customer_type.Id">@customer_type.Type</option>
-                                        }
-                                    </select>
 
+                                <div class="clearfix"></div>
 
-
-
-                                </div>
-
-                                <div class="col-md-3 pull-right">
-                                    <a href="#" data-toggle="modal" data-target="#customer_modal" class="btn pull-right btn-primary blue-btn-style btn-mini text-center width-195 bold">Customer Summary</a>
-                                </div>
-
-                                <div class="col-md-3"></div>
-                            </div>
-
-
-                            <div class="clearfix"></div>
-
-                        </div>
+</div>
 
                         <div class="clearfix"></div>
 
@@ -95,71 +95,7 @@
 
 
 
-                        <div class="col-md-12 mt-20 none" id="customer_table_div">
-
-                            <table class="table table-responsive border_black" id="customer_list_table">
-                                <thead>
-                                    <tr class="table-heading-fonts table-main-headings">
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Company Name</th>
-                                        <th>Phone</th>
-                                        <th>Email</th>
-                                        <th>Address</th>
-                                        
-
-                                        <th>Status</th>
-
-                                        @*<th>Pay Rate</th>
-                                            <th>Role</th>
-                                            <th>Status</th>*@
-
-                                        <th class="text-center">Actions</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody class="black-color bold" id="updated_customer_list">
-
-                                    @foreach (var v in Model)
-                                    {
-                                        <tr>
-                                            <td data-title="User ID">@v.Id</td>
-                                            <td data-title="User ID">@v.Name</td>
-                                            <td>@v.Company.Company_Name</td>
-                                            <td data-title="First Name">@v.phone</td>
-                                            <td data-title="Last Name">@v.Email</td>
-                                            <td data-title="Email" class="user-emails">@v.Billing_Address</td>
-                                            
-
-                                            @*@if (@v.Is_Active == 1)
-                                                {*@
-                                            <td class="gg">Active</td>
-                                            @*}
-                                                else
-                                                {
-                                                    <td class="red">Deactive</td>
-                                                }*@
-
-                                            <td data-title="Actions" class="text-center min-width-191 buttons-block">
-                                                <a class="btn btn-sm btn-info bold" href="" data-toggle="modal" data-target="#Edit_Customer_Modal" onclick="GetCustomer(@v.Id)">
-                                                    Edit
-                                                </a>
-                                                @*<a class="btn btn-sm btn-success bold" href="#">
-                                                        Enable
-                                                    </a>*@
-                                                <a class="btn btn-sm btn-danger bold" href="" onclick="delete_customer(@v.Id)">
-                                                    Delete
-                                                </a>
-                                            </td>
-                                        </tr>
-                                       
-                                    }
-                                </tbody>
-
-
-                            </table>
-
-                            <div class="clearfix"></div>
+                        <div class="col-md-12 mt-20" id="customer_table_div">
 
                         </div>
 
@@ -179,28 +115,28 @@
                                     <table class="black-color col-md-3 pull-left">
                                         <tr>
                                             <th class="width-90 font-16">Name</th>
-                                            <td>Bill Gates</td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <th class="width-90 font-16">Phone</th>
-                                            <td>+125577854</td>
+                                            <td></td>
                                         </tr>
 
                                         <tr>
                                             <th class="width-90 font-16">Email</th>
-                                            <td>cctv@yahoo.com</td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <th class="width-90 font-16">Type</th>
-                                            <td>Normal Customer</td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <th class="width-90 font-16">Notes</th>
-                                            <td>No Notes</td>
+                                            <td></td>
                                         </tr>
                                         <tr>
                                             <th class="width-90 font-16">Credit Limit</th>
-                                            <td>£99</td>
+                                            <td></td>
                                         </tr>
 
                                     </table>
@@ -437,6 +373,110 @@
     </div>
 
     @*----------------------------POP UP END CUSTOMER SUMMARY--------------------------------*@
+
+
+    @*----------------------------POP UP for EXISTING CUSTOMER--------------------------------*@
+
+    <div class="modal fade" id="ExistingModal" tabindex="-1" role="dialog" aria-hidden="false">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content modal-style-custom">
+
+                <div class="title col-md-12">
+                    <span>Message</span>
+                    <img src="~/img/images/c3.png" class="close mr--13 pull-right" data-dismiss="modal" />
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+
+                        <div class="win text-center">
+                            <h3 class="color"><b>Find Customer</b></h3>
+
+                            <div class="empty-height"></div><div class="empty-height"></div>
+
+
+
+                            <div class="col-md-12">
+                                <table border="0" class="table table-responsive border_black" id="kj">
+                                    <thead>
+                                        <tr class="table-heading-fonts table-main-headings">
+                                            <th class="text-center">Name</th>
+                                            <th class="text-center">Phone</th>
+                                            <th class="text-center">Address</th>
+                                            <th class="text-center">Postcode</th>
+                                            <th class="text-center">Email</th>
+                                            <th class="text-center">Balance</th>
+                                            <th class="text-center">Credit</th>
+                                            <th class="text-center">Credit Limit</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody class="black-color bold" id="">
+                                        @foreach (var v in ViewBag.Customer)
+                                        {
+                                            <tr onclick="go(@v.Id,@v.Customer_Type_Id);customer_credit()">
+                                                <td id="@String.Concat("juni1", v.Id)" data-title="User ID">@v.Name</td>
+                                                <td id="@String.Concat("juni2", v.Id)" data-title="First Name">@v.phone</td>
+                                                <td id="@String.Concat("juni3", v.Id)" data-title="Last Name">@v.Billing_Address</td>
+                                                <td id="@String.Concat("juni4", v.Id)" data-title="Last Name">@v.Billing_Postcode</td>
+                                                <td id="@String.Concat("juni5", v.Id)" data-title="Email" class="user-emails">@v.Email</td>
+                                                <td id="@String.Concat("juni6", v.Id)" data-title="Email" class="user-emails">@v.Balance</td>
+                                                <td id="@String.Concat("juni7", v.Id)" data-title="Email" class="user-emails">@v.Credit</td>
+                                                <td id="@String.Concat("juni8", v.Id)" data-title="Email" class="user-emails">@v.Credit_Limit</td>
+                                                @*<input type="text" id="jj" name="jj" value="@v.Balance"/>*@
+                                            </tr>
+
+                                        }
+                                    </tbody>
+                                </table>
+                                <div class="clearfix"></div>
+                            </div>
+
+
+                            @*<table id="00" class="table table-responsive border_black">*@
+                            @*<table border="0" class="table table-responsive border_black" id="kj">
+                                    <thead>
+                                        <tr class="table-heading-fonts table-main-headings">
+                                            <th class="text-center">Name</th>
+                                            <th class="text-center">Phone</th>
+                                            <th class="text-center">Address</th>
+                                            <th class="text-center">Postcode</th>
+                                            <th class="text-center">Email</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody class="black-color bold" id="">
+                                        @foreach (var v in ViewBag.Customer)
+                                    {
+                                            <tr onclick="go(@v.Id)">
+                                                <td id="@String.Concat("juni1", v.Id)" data-title="User ID">@v.Name</td>
+                                                <td id="@String.Concat("juni2", v.Id)" data-title="First Name">@v.phone</td>
+                                                <td id="@String.Concat("juni3", v.Id)" data-title="Last Name">@v.Billing_Address</td>
+                                                <td id="@String.Concat("juni4", v.Id)" data-title="Last Name">@v.Billing_Postcode</td>
+                                                <td id="@String.Concat("juni5", v.Id)" data-title="Email" class="user-emails">@v.Email</td>
+                                                <td id="@String.Concat("juni6", v.Id)" class="hidden">@v.Customer_Type_Id</td>
+                                            </tr>
+                                    }
+                                    </tbody>
+                                </table>*@
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer"></div>
+                <div class=""></div>
+
+            </div>
+        </div>
+    </div>
+
+
+    @*----------------------------POP UP END EXISTING CUSTOMER--------------------------------*@
+
 
 
     @*----------------------------POP UP EDIT CUSTOMER--------------------------------*@
@@ -695,10 +735,37 @@
 
     @*----------------------------POP UP END EDIT CUSTOMER--------------------------------*@
 
+
+    <script src="~/scripts/customer/customer_list.js"></script>
     <script src="~/Scripts/new-js/jquery-1.11.1.min.js"></script>
     <script src="~/Scripts/new-js/jquery.datatables.min.js"></script>
 
     <script>
+
+        function Custom_List() {
+            //alert("CUSTOM_LIST")
+
+            var type_ID = document.getElementById("customer_type_dropdown").value;
+            //alert(type_ID)
+
+            $.ajax({
+
+                url: '/Customer/Customer_List_Custom/',
+                data: { customer_type_id: type_ID},
+                cache: false,
+                type: 'Get',
+                success: function (data) {
+                    //alert("Success");
+                    //alert(data);
+                    document.getElementById('customer_table_div').innerHTML = data;
+
+                },
+                error: function (response) {
+                    //alert("Error");
+                }
+
+            })
+        }
 
         function GetCustomer(ID) {
 
@@ -714,6 +781,7 @@
                     document.getElementById("edit_customers").innerHTML = data;
                     $("#PleaseWait").removeClass('showDiv');
                     $("#PleaseWait").addClass('hideDiv');
+                    
                 },
                 error: function (response) {
                     alert("Error" + response);
@@ -762,16 +830,16 @@
         function show_customer_summary() {
             $("#customer_summary").removeClass("none");
             $("#customer_summary").addClass("showDiv");
-            $("#customer_table_div").addClass("none");
+            //$("#customer_table_div").addClass("none");
         }
     </script>
 
     <script>
-        function show_customer_type() {
-            $("#customer_table_div").removeClass("none");
-            $("#customer_table_div").addClass("showDiv");
-            $("#customer_summary").addClass("none");
-        }
+        //function show_customer_type() {
+        //    $("#customer_table_div").removeClass("none");
+        //    $("#customer_table_div").addClass("showDiv");
+        //    $("#customer_summary").addClass("none");
+        //}
     </script>
 
     <script>

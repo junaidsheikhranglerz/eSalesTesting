@@ -29,12 +29,12 @@
                             <div class="col-md-12">
 
                                 <div class="col-md-3 pl-0 pr-0">
-                                    <h3 class="bold font-23">EPOS Report Manager<small></small></h3>
+                                    <h3 class="bold font-23">Report Manager<small></small></h3>
                                 </div>
                                 <div class="pull-right mt-10">
 
                                     <div class="pull-left">
-                                        <input type="text" onkeypress='validate(event)' class="width_78_height text-center mr-7" placeholder="User..." name="stock_qty" id="login">
+                                        <input  type="text" onkeyup='findByUser();' class="width_78_height text-center mr-7" placeholder="User..." name="stock_qty" id="User_ID">
                                     </div>
 
                                     <div class="pull-left">
@@ -42,14 +42,32 @@
                                     </div>
 
                                     <div class="pull-left">
-                                        <input type="text" onkeypress='validate(event)' class="width_78_height text-center mr-7" placeholder="Sales no..." name="stock_qty" id="login">
+                                        <input type="text" onkeyup='findByInvoice(this.value)' class="width_78_height text-center mr-7" placeholder="Sales no..." name="stock_qty" id="invoice_ID">
                                     </div>
                                     <div class="pull-left">
-                                        <input type="text" onkeypress='validate(event)' class="width_78_height text-center mr-7" placeholder="All Type" name="stock_qty" id="login">
+                                        <select class="width_78_height text-center mr-7" id="docType" onchange="findByDocType(this.value)">
+                                            <option>Please Select Any</option>
+                                            @foreach (var type in ViewBag.docTypes)
+                                            {
+                                                <option value="@type.Id">@type.Type</option>
+                                            }
+
+                                        </select>
+                                      
                                     </div>
+
                                     <div class="pull-left">
-                                        <input type="text" onkeypress='validate(event)' class="width_78_height text-center mr-7" placeholder="All Status" name="stock_qty" id="login">
+                                        <select class="width_78_height text-center mr-7" id="payType" onchange="findByPayType(this.value)">
+                                            <option>Please Select Any</option>
+                                            @foreach (var type in ViewBag.payTypes)
+                                            {
+                                                <option value="@type.Id">@type.Status</option>
+                                            }
+
+                                        </select>
+
                                     </div>
+                                    
                                     <div class="pull-left">
                                         <label class="black-color mr-3 mt-5">From :</label>
                                     </div>
@@ -60,7 +78,7 @@
                                         <label class="black-color mr-3 mt-5">To :</label>
                                     </div>
                                     <div class="pull-left">
-                                        <input required type="date" disabled id="to_date" oninput="showDateDiv()" class="date-width-height" name="to_date">
+                                        <input required type="date" disabled id="to_date" oninput="showDateDiv();findByDate()" class="date-width-height" name="to_date">
                                     </div>
 
 
@@ -306,6 +324,9 @@
                             </div>
                         </div>
 
+                        <script src="~/Scripts/new-js/jquery-1.11.1.min.js"></script>
+                        <script src="~/Scripts/new-js/jquery.datatables.min.js"></script>
+
                         <div id="date_click_div" class="">
 
                             <div class="col-md-12">
@@ -314,6 +335,7 @@
                                         <tr class="table-heading-fonts table-main-headings">
                                             <th class="text-center">Order Id</th>
                                             <th class="text-center">Customer</th>
+                                            @*<th class="text-center">Customer Type</th>*@
                                             <th class="text-center">Payment Type</th>
                                             <th class="text-center">Status</th>
                                             <th class="text-center">Net</th>
@@ -325,33 +347,9 @@
 
                                         </tr>
                                     </thead>
-                                    <tbody class="black-color bold">
+                                    <tbody id="updatedDiv" class="black-color bold">
 
-                                        @foreach (var v in Model)
-                                        {
-
-                                            <tr class="text-center">
-                                                <td data-title="User ID">@v.Invoice_Number</td>
-                                                <td data-title="User ID">@v.Customer.Name</td>
-                                                <td data-title="User ID">@v.Payment_Methods.Type</td>
-                                                <td data-title="User ID">@v.Payment_Status.Status</td>
-                                                <td data-title="User ID">@v.Net_Price</td>
-                                                <td data-title="User ID">@v.VAT_20</td>
-                                                <td data-title="User ID">@v.Gross</td>
-                                                <td data-title="User ID">@v.Created_at.ToString("MM/dd/yyyy")</td>
-
-                                                <td class="text-center" style="vertical-align:middle;">
-                                                    <a class="btn btn-sm btn-info bold" href="~/Customer/Edit_Invoice/@v.Id">
-                                                        Edit
-                                                    </a>
-
-                                                    <a class="btn btn-sm btn-danger bold" href="">
-                                                        Delete
-                                                    </a>
-                                                </td>
-
-                                            </tr>
-                                        }
+                                     
                                     </tbody>
 
                                 </table>
@@ -588,6 +586,9 @@
 
     @*----------------------------POP UP END CUSTOMER SUMMARY--------------------------------*@
 
+ 
+
+
     <script>
         function GetSales(ID) {
 
@@ -613,9 +614,7 @@
         }
     </script>
 
-    <script src="~/Scripts/new-js/jquery-1.11.1.min.js"></script>
-    <script src="~/Scripts/new-js/jquery.datatables.min.js"></script>
-
+    
     <script>
         function show_customer_summary() {
             $("#customer_summary").removeClass("none");
@@ -683,6 +682,107 @@
 
             window.print();
         }
+    </script>
+
+    <script>
+        function findByUser()
+        {
+            var user = document.getElementById('User_ID').value;
+           
+            $.ajax({
+
+                url: '/Report/SaleReportByUser/',
+                data: { str: user },
+                type: 'Get',
+                cache: false,
+                success: function(data)
+                {
+                   
+                   document.getElementById('updatedDiv').innerHTML= data;
+                },
+                error: function (response) {
+            
+                }
+
+            })
+        }
+
+        function findByInvoice(id)
+        {
+            $.ajax({
+
+                url: '/Report/SaleReportByInvoice/',
+                data: { invoiceId : id },
+                type: 'Get',
+                cache: false,
+                success: function (data) {
+                    document.getElementById('updatedDiv').innerHTML = data;
+                },
+                error: function (response) {
+                    
+                }
+
+            })
+        }
+
+      
+
+        function findByDocType(id) {
+            $.ajax({
+
+                url: '/Report/SaleReportByDocType/',
+                data: { docTypeId: id },
+                type: 'Get',
+                cache: false,
+                success: function (data) {
+                    document.getElementById('updatedDiv').innerHTML = data;
+                },
+                error: function (response) {
+
+                }
+
+            })
+        }
+
+        function findByPayType(id) {
+            $.ajax({
+
+                url: '/Report/SaleReportByPayType/',
+                data: { payTypeId: id },
+                type: 'Get',
+                cache: false,
+                success: function (data) {
+                    document.getElementById('updatedDiv').innerHTML = data;
+                },
+                error: function (response) {
+
+                }
+
+            })
+        }
+
+
+        function findByDate() {
+            
+            //alert("dsfdsdfvdfgdfgdfsgdfhbgefagdsgrgfsgsdggbwdgdsagfgfgdfg");
+            var to = document.getElementById('to_date').value;
+            var from = document.getElementById('from_date').value;
+            $.ajax({
+
+                url: '/Report/SaleReportByDate/',
+                data: { dateFrom:from,dateTo:to },
+                type: 'Get',
+                cache: false,
+                success: function (data) {
+                    document.getElementById('updatedDiv').innerHTML = data;
+                },
+                error: function (response) {
+
+                }
+
+            })
+        }
+
     </script>
 
 </body>
