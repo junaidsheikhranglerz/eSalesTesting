@@ -31,7 +31,7 @@
 
     //$("#ExistingModal").hide;   //alert(type1);
 
-    //$("#ExistingModal").hide;
+    //$("#ExistingModal").hide;//$("#ExistingModal").hide;
 
 
     $("#customer_name").text(name1);
