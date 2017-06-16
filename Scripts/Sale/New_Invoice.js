@@ -1,4 +1,105 @@
-﻿function payment_status() {
+﻿function submitResult() {
+
+    //alert('submit');
+
+
+    if (checkCreditLimit() == false) {
+        return false;
+
+    } else {
+        return true;
+    }
+}
+
+
+
+
+function checkCreditLimit() {
+
+    //alert("check_credit_limit");
+    var limits = document.getElementById('credit_limit_input').value;
+
+
+    var gross1 = document.getElementById("gross_invoice").value;
+    var payment_status = document.getElementById("payment_status_id").value;
+
+    var gross2 = gross1 - 0;
+    var gross = gross2.toFixed(2);
+    var limit_float = limits - 0;
+
+
+    var limit = limit_float.toFixed(2);
+    //alert("gross" + gross);
+    //alert("limit" + limit);
+
+
+    if (payment_status != 1) {
+
+
+        if (payment_status == 3) {
+            var amount_left1 = document.getElementById("left_amount_hidden").value;
+
+            var amount_left2 = amount_left1 - 0;
+            var amount_left = amount_left2.toFixed(2);
+
+            //alert("LIMIT" + limit);
+            //alert("Amount Left" + amount_left);
+
+
+            if (parseFloat(amount_left) <= parseFloat(limit)) {
+                //alert("Amount Left" + amount_left);
+                //alert("Partial Payment Not Reached your Credit Limit");
+                return true;
+            }
+            else {
+
+                swal({
+                    title: "LIMIT REACHED",
+                    text: "Reached to your Credit Limit, Please update your Credit Limit",
+                    type: "warning",
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Okay',
+                },
+       function () {
+       });
+
+                //alert("Partial Payment You have Reached your Credit Limit\nYou have to Update your Credit Limit");
+                return false;
+            }
+        }
+
+        else {
+            if (parseFloat(gross) > parseFloat(limit)) {
+
+                //alert("Gross" + gross);
+                //alert("Limit" + limit);
+                //alert("You have Reached your Credit Limit\nYou have to Update your Credit Limit");
+
+                swal({
+                    title: "LIMIT REACHED",
+                    text: "Reached to your Credit Limit, Please update your Credit Limit",
+                    type: "warning",
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Okay',
+                },
+    function () {
+    });
+
+                return false;
+            }
+            else {
+                //alert("Not Reached your Credit Limit");
+                return true;
+            }
+        }
+    }
+    else {
+        return true;
+    }
+}
+
+
+function payment_status() {
     var selectedValue = document.getElementById("payment_status_id").value;
 
     jQuery.noConflict();
@@ -151,7 +252,7 @@ function addNewRow() {
 function tbody_add_record(id, count) {
 
 
-    alert("2222-----" + count);
+    //alert("2222-----" + count);
 
     var sku = document.getElementById('partial_row1' + id);
     $("#invoice_product_id" + count).val(id);
@@ -243,7 +344,15 @@ function global_discount() {
     //alert(a);
 
     if (a == "") {
-        alert("Please Enter Discount Price");
+        swal({
+            title: "DISCOUNT EMPTY",
+            text: "Please Enter Discount Price",
+            type: "warning",
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: 'Okay',
+        },
+     function () {
+     });
     }
 
     else {
@@ -310,25 +419,24 @@ function productList(char) {
 
             },
             error: function (response) {
-                alert("productList");
+                //alert("productList");
             }
         })
     }
     else {
 
         swal({
-            title: "ERROR",
-            text: "Please Select the Customer",
+            title: "CUSTOMER NOT SELECTED",
+            text: "You have to Select Customer first, to Select Products",
             type: "warning",
             confirmButtonColor: '#DD6B55',
             confirmButtonText: 'Okay',
         },
-        function () {
-        });
+  function () {
+  });
 
         //alert("Please Select customer First");
     }
-
 }
 
 
@@ -337,6 +445,7 @@ function productList(char) {
 
 function Total(rownum) {
 
+    //alert("rownum =  " + rownum);
     //alert("ROWCount Total" + document.getElementById('rowCounterrr').value);
 
     var quantity = document.getElementById('invoice_quantity' + rownum).value;
@@ -351,7 +460,7 @@ function Total(rownum) {
     var total = quantity * price;
 
     var totalVat = quantity * priceVatTotal;
-
+    
     document.getElementById('invoice_total' + rownum).value = total;
     document.getElementById('invoice_price_vat' + rownum).value = priceVatTotal;
     document.getElementById('invoice_total_vat' + rownum).value = totalVat;
@@ -371,15 +480,21 @@ function Total(rownum) {
     document.getElementById('invoice_total_vat' + rownum).value = after_discount_total_Vat.toFixed(2);
 
 
-
+    
     var a = 0;
     var size = document.getElementById('rowCounterrr').value;
-    for (i = 1; i <= size; i++) {
-        var totaaaal = document.getElementById('invoice_total' + i).value;
+    var totaaaal = 0;
+   
+    for (i = 1; i <= size ; ++i) {
+
+        totaaaal = document.getElementById('invoice_total' + i).value;
+        //alert("assa"+totaaaal);
         a = +totaaaal + +a;
+
+        //alert("i  " + i + "   totaaaal    " + totaaaal + "  a  " + a);
     }
 
-
+    //alert("AGYA");
 
     $("#net_invoice").html("£" + a);
 
@@ -483,7 +598,15 @@ function checkInvoiceNumber() {
             if (data == "False") {
 
                 document.getElementById("invoice_number").value = "";
-                alert("Invoice_number already exist !")
+                swal({
+                    title: "INVOICE NUMBER EXIST",
+                    text: "Invoice Number Exist, Enter Some other Number",
+                    type: "warning",
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Okay',
+                },
+    function () {
+    });
             }
         },
         error: function (response) {
@@ -552,7 +675,7 @@ function checkItemSaleNumber() {
 function checkSoldHistory(counter) {
 
     //alert(counter);
-    alert("agya");
+    //alert("agya");
     var productID = document.getElementById("invoice_product_id" + counter).value;
     //alert("proID = " + productID);
     var customerID = document.getElementById("exist_customer_id").value;
@@ -632,8 +755,17 @@ function checkQuantityAvailable(quantiy, id) {
 
 
             if (data == "False") {
-                alert("Quantity Exceeded Limit");
-                document.getElementById('invoice_quantity' + id).value = "";
+                swal({
+                    title: "QUANTITY EXCEEDED",
+                    text: "You don't have Enough Quantity",
+                    type: "warning",
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Okay',
+                },
+      function () {
+      });
+                //
+                document.getElementById('invoice_quantity' + id).value = "0";
             }
 
         },
@@ -648,105 +780,7 @@ function checkQuantityAvailable(quantiy, id) {
 
 
 
-function submitResult() {
 
-    //alert('submit');
-
-
-    if (checkCreditLimit() == false) {
-        return false;
-
-    } else {
-        return true;
-    }
-}
-
-
-
-
-function checkCreditLimit() {
-
-    //alert("check_credit_limit");
-    var limits = document.getElementById('credit_limit_input').value;
-
-
-    var gross1 = document.getElementById("gross_invoice").value;
-    var payment_status = document.getElementById("payment_status_id").value;
-
-    var gross2 = gross1 - 0;
-    var gross = gross2.toFixed(2);
-    var limit_float = limits - 0;
-
-
-    var limit = limit_float.toFixed(2);
-    //alert("gross" + gross);
-    //alert("limit" + limit);
-
-
-    if (payment_status != 1) {
-
-
-        if (payment_status == 3) {
-            var amount_left1 = document.getElementById("left_amount_hidden").value;
-
-            var amount_left2 = amount_left1 - 0;
-            var amount_left = amount_left2.toFixed(2);
-
-            alert("LIMIT" + limit);
-            alert("Amount Left" + amount_left);
-
-
-            if (amount_left <= limit) {
-                //alert("Amount Left" + amount_left);
-                //alert("Partial Payment Not Reached your Credit Limit");
-                return true;
-            }
-            else {
-
-                swal({
-                    title: "LIMIT REACHED",
-                    text: "Reached to your Credit Limit, Please update your Credit Limit",
-                    type: "warning",
-                    confirmButtonColor: '#DD6B55',
-                    confirmButtonText: 'Okay',
-                },
-       function () {
-       });
-
-                //alert("Partial Payment You have Reached your Credit Limit\nYou have to Update your Credit Limit");
-                return false;
-            }
-        }
-
-        else {
-            if (gross > limit) {
-
-                //alert("Gross" + gross);
-                //alert("Limit" + limit);
-                //alert("You have Reached your Credit Limit\nYou have to Update your Credit Limit");
-
-                swal({
-                    title: "LIMIT REACHED",
-                    text: "Reached to your Credit Limit, Please update your Credit Limit",
-                    type: "warning",
-                    confirmButtonColor: '#DD6B55',
-                    confirmButtonText: 'Okay',
-                },
-    function () {
-    });
-
-                return false;
-            }
-            else {
-                //alert("Not Reached your Credit Limit");
-                return true;
-            }
-        }
-    }
-    else {
-        return true;
-    }
-}
 
 function purchase_number_empty() {
     alert("dsadas");
@@ -759,12 +793,12 @@ function rowcounterPlus() {
 
     document.getElementById('rowCounterrr').value = +number + +1;
 
-    alert("ADD" + document.getElementById('rowCounterrr').value)
+    //alert("ADD" + document.getElementById('rowCounterrr').value)
 
 }
 function rowcounterMinus() {
     var number = document.getElementById('rowCounterrr').value;
 
     document.getElementById('rowCounterrr').value = number - 1;
-    alert("CROSS" + document.getElementById('rowCounterrr').value)
+    //alert("CROSS" + document.getElementById('rowCounterrr').value)
 }

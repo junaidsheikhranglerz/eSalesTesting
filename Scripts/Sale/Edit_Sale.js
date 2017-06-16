@@ -88,7 +88,7 @@ function Partial_Payment() {
     document.getElementById("amount_left_td").innerHTML = remaining;
     $("#left_amount_hidden").val(remaining);
     //$("#partial_paid_td").val(amount);
-    alert("REMAINING" + remaining);
+    //alert("REMAINING" + remaining);
 
 }
 
@@ -100,7 +100,7 @@ function Deposit_Payment() {
     var gross = $("#gross_invoice").val();
 
     var amount = $("#partial_amount_deposit").val();
-    alert("Deposit Value:" + amount);
+    //alert("Deposit Value:" + amount);
 
     var rem = gross - amount - discount;
     var remaining = rem.toFixed(2);
@@ -112,7 +112,7 @@ function Deposit_Payment() {
     document.getElementById("amount_left_td").innerHTML = remaining;
     $("#left_amount_hidden").val(remaining);
     //$("#partial_paid_td").val(amount);
-    alert("REMAINING: " + " " + remaining);
+    //alert("REMAINING: " + " " + remaining);
 }
 
 
@@ -131,7 +131,7 @@ function addNewRow() {
     arguments.callee.myStaticVar = arguments.callee.myStaticVar || rowNumber1;
     var count = arguments.callee.myStaticVar++;
     document.getElementById("counters").value = count;
-    alert(count);
+    //alert(count);
 
     $.ajax({
 
@@ -253,7 +253,7 @@ function global_discount() {
         $("#global_discount_hidden").val(a);
         $("#total_after_discount_hidden").val(after_discount);
         var amount_left = document.getElementById("amount_left_td").innerHTML;
-        alert(amount_left);
+        //alert(amount_left);
         var remaining = amount_left - a;
 
         document.getElementById("amount_left_td").innerHTML = ("£" + remaining.toFixed(2));
@@ -271,11 +271,12 @@ function productList(char) {
 
 
 
-    var customerID = document.getElementById("exist_customer_id").value;
+    //var customerID = document.getElementById("exist_customer_id").value;
 
-    if (customerID != null && customerID != "") {
+    //if (customerID != null && customerID != "") {
 
-        var Count = document.getElementById("counters").value;
+    var Count = document.getElementById("counters").value;
+    //alert("Counterrrrrrrrrrrrrr" + Count);
         if (Count == "") {
             Count = 1;
         }
@@ -299,14 +300,14 @@ function productList(char) {
 
             },
             error: function (response) {
-                alert(response);
+                //alert("123131");
             }
         })
-    }
-    else {
+    //}
+    //else {
 
-        alert("Please Select customer First");
-    }
+    //    alert("Please Select customer First");
+    //}
 
 }
 
@@ -520,10 +521,13 @@ function checkItemSaleNumber() {
 
 function checkSoldHistory(counter) {
 
+    //alert(counter);
+    //alert("agya");
     var productID = document.getElementById("invoice_product_id" + counter).value;
+    //alert("Product ID" + productID);
     
     var customerID = document.getElementById("exist_customer_id").value;
-    
+    //alert("Customer ID" + customerID);
     $.ajax({
 
         url: '/Sale/SoldHistory/',
@@ -531,7 +535,7 @@ function checkSoldHistory(counter) {
         cache: false,
         type: 'Get',
         success: function (data) {
-
+            //alert("Success");
             document.getElementById('soldHistory').innerHTML = data;
             if (document.getElementById("sold_history_checkbox").checked && document.getElementById('soldHistory').innerHTML != "") {
 
@@ -585,7 +589,7 @@ function outstanding_balance_function() {
 function checkQuantityAvailable(quantiy, id) {
 
     var proID = document.getElementById('invoice_product_id' + id).value;
-
+    alert(proID);
     $.ajax({
 
         url: '/Product/QuantityCheck/',
@@ -596,13 +600,22 @@ function checkQuantityAvailable(quantiy, id) {
 
 
             if (data == "False") {
-                alert("Quantity Exceeded Limit");
-                document.getElementById('invoice_quantity' + id).value = "";
+                swal({
+                    title: "QUANTITY EXCEEDED",
+                    text: "You don't have Enough Quantity",
+                    type: "warning",
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Okay',
+                },
+      function () {
+      });
+                //
+                document.getElementById('invoice_quantity' + id).value = "0";
             }
 
         },
         error: function (response) {
-            
+
         }
 
 
@@ -626,45 +639,130 @@ function submitResult() {
 }
 
 
+//------------------------EDIT OLD CHECK CREDIT LIMIT-------------------------------
 
+//function checkCreditLimit() {
+
+//    var limits = document.getElementById('credit_limit_input').value;
+
+
+//    var gross = document.getElementById("gross_invoice").value;
+//    var payment_status = document.getElementById("payment_status_id").value;
+
+//    var limit_float = limits - 0;
+
+//    var limit = limit_float.toFixed(2);
+
+
+//    if (payment_status != 1) {
+
+
+//        if (payment_status == 3) {
+//            var amount_left = document.getElementById("left_amount_hidden").value;
+
+
+//            if (amount_left <= limit) {
+//                alert("Partial Payment Not Reached your Credit Limit");
+//                return true;
+//            }
+//            else {
+//                alert("Partial Payment You have Reached your Credit Limit  \n You have to Update your Credit Limit");
+//                return false;
+//            }
+//        }
+
+//        else {
+//            if (gross > limit) {
+//                alert("You have Reached your Credit Limit \n You have to Update your Credit Limit");
+//                return false;
+//            }
+//            else {
+//                alert("Not Reached your Credit Limit");
+//                return true;
+//            }
+//        }
+//    }
+//    else {
+//        return true;
+//    }
+//}
+//------------------------EDIT OLD CHECK CREDIT LIMIT-------------------------------
 
 function checkCreditLimit() {
 
+    //alert("check_credit_limit");
     var limits = document.getElementById('credit_limit_input').value;
 
 
-    var gross = document.getElementById("gross_invoice").value;
+    var gross1 = document.getElementById("gross_invoice").value;
     var payment_status = document.getElementById("payment_status_id").value;
 
+    var gross2 = gross1 - 0;
+    var gross = gross2.toFixed(2);
     var limit_float = limits - 0;
 
+
     var limit = limit_float.toFixed(2);
+    //alert("gross" + gross);
+    //alert("limit" + limit);
 
 
     if (payment_status != 1) {
 
 
         if (payment_status == 3) {
-            var amount_left = document.getElementById("left_amount_hidden").value;
+            var amount_left1 = document.getElementById("left_amount_hidden").value;
+
+            var amount_left2 = amount_left1 - 0;
+            var amount_left = amount_left2.toFixed(2);
+
+            //alert("LIMIT" + limit);
+            //alert("Amount Left" + amount_left);
 
 
-            if (amount_left <= limit) {
-                alert("Partial Payment Not Reached your Credit Limit");
+            if (parseFloat(amount_left) <= parseFloat(limit)) {
+                //alert("Amount Left" + amount_left);
+                //alert("Partial Payment Not Reached your Credit Limit");
                 return true;
             }
             else {
-                alert("Partial Payment You have Reached your Credit Limit  \n You have to Update your Credit Limit");
+
+                swal({
+                    title: "LIMIT REACHED",
+                    text: "Reached to your Credit Limit, Please update your Credit Limit",
+                    type: "warning",
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Okay',
+                },
+       function () {
+       });
+
+                //alert("Partial Payment You have Reached your Credit Limit\nYou have to Update your Credit Limit");
                 return false;
             }
         }
 
         else {
-            if (gross > limit) {
-                alert("You have Reached your Credit Limit \n You have to Update your Credit Limit");
+            if (parseFloat(gross) > parseFloat(limit)) {
+
+                //alert("Gross" + gross);
+                //alert("Limit" + limit);
+                //alert("You have Reached your Credit Limit\nYou have to Update your Credit Limit");
+
+                swal({
+                    title: "LIMIT REACHED",
+                    text: "Reached to your Credit Limit, Please update your Credit Limit",
+                    type: "warning",
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Okay',
+                },
+    function () {
+    });
+
                 return false;
             }
             else {
-                alert("Not Reached your Credit Limit");
+                //alert("Not Reached your Credit Limit");
                 return true;
             }
         }
@@ -675,19 +773,21 @@ function checkCreditLimit() {
 }
 
 
-
 function rowcounterPlus() {
 
     var number = document.getElementById('rowCounterrr').value;
 
     document.getElementById('rowCounterrr').value = +number + +1;
 
-    alert("ADD" + document.getElementById('rowCounterrr').value)
+    //alert("ADD" + document.getElementById('rowCounterrr').value)
 
 }
+
+
+
 function rowcounterMinus() {
     var number = document.getElementById('rowCounterrr').value;
 
     document.getElementById('rowCounterrr').value = number - 1;
-    alert("CROSS" + document.getElementById('rowCounterrr').value)
+    //alert("CROSS" + document.getElementById('rowCounterrr').value)
 }

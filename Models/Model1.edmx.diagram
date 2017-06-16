@@ -50,7 +50,7 @@
         <AssociationConnector Association="Database1Model.FK_Purchase_Order_Supplier_Table" />
         <EntityTypeShape EntityType="Database1Model.Payment_Priority" Width="1.5" PointX="9.375" PointY="4.75" />
         <EntityTypeShape EntityType="Database1Model.Purchase_Log" Width="1.5" PointX="20.75" PointY="6.875" />
-        <EntityTypeShape EntityType="Database1Model.Purchase_Order" Width="1.5" PointX="16.5" PointY="10.5" />
+        <EntityTypeShape EntityType="Database1Model.Purchase_Order" Width="1.875" PointX="16.125" PointY="10.5" />
         <AssociationConnector Association="Database1Model.FK_Payment_Method_Purchase_Order" />
         <AssociationConnector Association="Database1Model.FK_Payment_Piriority_Id" />
         <AssociationConnector Association="Database1Model.FK_Purchase_Log_Piriority_Id" />
@@ -61,6 +61,9 @@
         <AssociationConnector Association="Database1Model.FK_Purchase_Order_Status_Purchase_Order" />
         <AssociationConnector Association="Database1Model.FK_Supplier_Purchase_Order" />
         <AssociationConnector Association="Database1Model.FK_User_Purchase_Order" />
+        <EntityTypeShape EntityType="Database1Model.PO_Sale_Invoice" Width="2.125" PointX="18.75" PointY="12.875" />
+        <AssociationConnector Association="Database1Model.FK_PO_Sale_Invoice_ToTable" />
+        <AssociationConnector Association="Database1Model.FK_PO_Sale_Invoice_ToTable_1" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -2,8 +2,8 @@
 
 
 
-  
-   <table border="0" class="table table-responsive border_black" id="table_on_dates">
+
+<table border="0" class="table table-responsive border_black" id="table_on_dates">
     <thead>
         <tr class="table-heading-fonts table-main-headings">
             <th class="text-center">PO ID</th>
@@ -21,18 +21,20 @@
     <tbody class="black-color bold" id="">
 
 
-      
-        
+
+
 
         @foreach (var v in Model)
         {
 
-            if(v==null)
+            if (v == null)
             {
                 continue;
             }
 
-            <tr>
+            
+            <tr onclick="location.href = '@(Url.Action("Edit_Purchase_Order", "Purchase", new { id = v.Id }))'">
+            @*<tr onclick="foo(@v.Id)">*@
                 <td class="text-center" data-title="User ID">@v.Purchase_Number</td>
                 <td class="text-center" data-title="User ID">@v.Supplier.Name</td>
                 <td class="text-center" data-title="User ID">@v.Total</td>
@@ -46,20 +48,18 @@
 
 
         }
-            
-            
-       
-        
-        
+
+
+
+
     </tbody>
 
 </table>
 
 
-
-
-
-
-
-
-
+@*<script>
+    function foo(id) {
+        alert("ONE");
+        window.location.href = '~/Purchase/Edit_Purchase_Order/' + id;
+    }
+</script>*@
